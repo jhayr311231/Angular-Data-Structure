@@ -1,0 +1,21 @@
+<div>
+    <h2>Car Model List</h2>
+
+    <!-- Input field for adding or editing a car model -->
+    <input type="text" [(ngModel)]="newCarModel" placeholder="Enter car model" />
+    <button (click)="addCarModel()">
+    {{ editIndex === null ? 'Add Car Model' : 'Update Car Model' }}
+  </button>
+
+    <!-- Input field for searching/filtering car models -->
+    <input type="text" [(ngModel)]="searchQuery" placeholder="Search car models" />
+
+    <!-- Display the list of car models -->
+    <ul>
+        <li *ngFor="let car of getFilteredCarModels(); let i = index">
+            {{ car }}
+            <button (click)="editCarModel(i)">Edit</button>
+            <button (click)="removeCarModel(i)">Remove</button>
+        </li>
+    </ul>
+</div>
