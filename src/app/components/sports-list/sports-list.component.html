@@ -1,0 +1,30 @@
+<div>
+    <h2>Sports List</h2>
+
+    <!-- Input field for adding a new sport -->
+    <input type="text" [(ngModel)]="newSport.name" placeholder="Enter sport name" />
+
+    <!-- Dropdown to select the sport category -->
+    <select [(ngModel)]="newSport.category">
+    <option value="">Select Category</option>
+    <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+  </select>
+
+    <button (click)="addSport()">Add Sport</button>
+
+    <!-- Dropdown to filter by category -->
+    <h3>Filter by Category</h3>
+    <select [(ngModel)]="filterCategory">
+    <option value="">All Categories</option>
+    <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+  </select>
+
+    <!-- Display the filtered list of sports -->
+    <ul>
+        <li *ngFor="let sport of filterByCategory(); let i = index">
+            <h4>{{ sport.name }} ({{ sport.category }})</h4>
+            <button (click)="editSport(i)">Edit</button>
+            <button (click)="removeSport(i)">Remove</button>
+        </li>
+    </ul>
+</div>

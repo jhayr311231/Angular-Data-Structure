@@ -11,6 +11,7 @@ import { CarModelListComponent } from './components/car-model-list/car-model-lis
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { SubjectListComponent } from './components/subject-list/subject-list.component';
 import { CountryListComponent } from './components/country-list/country-list.component';
+import { SportsListComponent } from './components/sports-list/sports-list.component';
 
 const routes: Routes = [
   { path: 'studentlist', component: StudentListComponent },
@@ -24,6 +25,9 @@ const routes: Routes = [
   { path: 'productlist', component: ProductListComponent },
   { path: 'subjectlist', component: SubjectListComponent },
   { path: 'countrylist', component: CountryListComponent },
+  { path: 'sportslist', component: SportsListComponent },
+
+
 ];
 
 
