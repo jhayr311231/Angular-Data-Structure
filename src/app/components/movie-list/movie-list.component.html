@@ -1,0 +1,15 @@
+<div>
+    <h2>Movie List</h2>
+
+    <!-- Input field for adding a new movie -->
+    <input type="text" [(ngModel)]="newMovie" placeholder="Enter movie title" />
+    <button (click)="addMovie()">Add Movie</button>
+
+    <!-- Display the list of movies -->
+    <ul>
+        <li *ngFor="let movie of movies; let i = index">
+            {{ movie }}
+            <button (click)="removeMovie(i)">Remove</button>
+        </li>
+    </ul>
+</div>
