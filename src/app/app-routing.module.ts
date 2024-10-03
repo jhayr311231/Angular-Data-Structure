@@ -5,6 +5,8 @@ import { EmployeeListComponent } from './components/employee-list/employee-list.
 import { FruitListComponent } from './components/fruit-list/fruit-list.component';
 import { CourseListComponent } from './components/course-list/course-list.component';
 import { BookListComponent } from './components/book-list/book-list.component';
+import { CityListComponent } from './components/city-list/city-list.component';
+
 
 const routes: Routes = [
   { path: 'studentlist', component: StudentListComponent },
@@ -12,6 +14,7 @@ const routes: Routes = [
   { path: 'fruitlist', component: FruitListComponent },
   { path: 'courselist', component: CourseListComponent },
   { path: 'booklist', component: BookListComponent },
+  { path: 'citylist', component: CityListComponent },
 
 
 ];
