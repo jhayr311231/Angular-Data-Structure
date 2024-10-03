@@ -1,0 +1,20 @@
+<div>
+    <h2>Vegetable List</h2>
+
+    <!-- Input field for adding a new vegetable -->
+    <input type="text" [(ngModel)]="newVegetable.name" placeholder="Enter vegetable name" />
+
+    <!-- Input field for the vegetable price -->
+    <input type="number" [(ngModel)]="newVegetable.price" placeholder="Enter price" step="0.01" />
+
+    <button (click)="addVegetable()">Add Vegetable</button>
+
+    <!-- Display the list of vegetables -->
+    <ul>
+        <li *ngFor="let vegetable of vegetables; let i = index">
+            <h4>{{ vegetable.name }} - Php{{ vegetable.price.toFixed(2) }}</h4>
+            <button (click)="editVegetable(i)">Edit</button>
+            <button (click)="removeVegetable(i)">Remove</button>
+        </li>
+    </ul>
+</div>
