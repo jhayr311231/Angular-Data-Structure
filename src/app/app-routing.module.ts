@@ -13,6 +13,7 @@ import { SubjectListComponent } from './components/subject-list/subject-list.com
 import { CountryListComponent } from './components/country-list/country-list.component';
 import { SportsListComponent } from './components/sports-list/sports-list.component';
 import { VegetableListComponent } from './components/vegetable-list/vegetable-list.component';
+import { AnimalListComponent } from './components/animal-list/animal-list.component';
 
 const routes: Routes = [
   { path: 'studentlist', component: StudentListComponent },
@@ -28,7 +29,7 @@ const routes: Routes = [
   { path: 'countrylist', component: CountryListComponent },
   { path: 'sportslist', component: SportsListComponent },
   { path: 'vegetablelist', component: VegetableListComponent },
-
+  { path: 'animallist', component: AnimalListComponent },
 ];
 
 
