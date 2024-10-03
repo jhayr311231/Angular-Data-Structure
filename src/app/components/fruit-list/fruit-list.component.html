@@ -1,0 +1,12 @@
+<div>
+    <h2>Fruit List</h2>
+
+    <!-- Input field for adding a new fruit -->
+    <input type="text" [(ngModel)]="newFruit" placeholder="Enter fruit name" />
+    <button (click)="addFruit()">Add Fruit</button>
+
+    <!-- Display the list of fruits -->
+    <ul>
+        <li *ngFor="let fruit of getFruitList()">{{ fruit }}</li>
+    </ul>
+</div>
