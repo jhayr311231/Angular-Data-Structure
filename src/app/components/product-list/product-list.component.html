@@ -1,0 +1,24 @@
+<div>
+    <h2>Product List</h2>
+
+    <!-- Form for adding or editing a product -->
+    <input type="text" [(ngModel)]="newProduct.name" placeholder="Enter product name" />
+    <input type="number" [(ngModel)]="newProduct.price" placeholder="Enter product price" />
+
+    <!-- Image upload -->
+    <input type="file" (change)="onImageSelected($event)" />
+    <button (click)="addProduct()">{{ editIndex === null ? 'Add Product' : 'Update Product' }}</button>
+
+    <!-- Display the list of products -->
+    <ul>
+        <li *ngFor="let product of products; let i = index">
+            <div>
+                <h3>{{ product.name }}</h3>
+                <p>Price: Php{{ product.price }}</p>
+                <img [src]="product.imageUrl" alt="Product Image" width="100" height="100" />
+                <button (click)="editProduct(i)">Edit</button>
+                <button (click)="removeProduct(i)">Remove</button>
+            </div>
+        </li>
+    </ul>
+</div>
