@@ -1,0 +1,30 @@
+<div>
+    <h2>Country List by Continent</h2>
+
+    <!-- Input fields for adding a new country -->
+    <input type="text" [(ngModel)]="newCountry.name" placeholder="Country Name" />
+
+    <!-- Dropdown for selecting continent -->
+    <select [(ngModel)]="newCountry.continent">
+    <option value="">Select Continent</option>
+    <option *ngFor="let continent of continents" [value]="continent">{{ continent }}</option>
+  </select>
+
+    <button (click)="addCountry()">Add Country</button>
+
+    <!-- Dropdown for filtering by continent -->
+    <h3>Filter by Continent</h3>
+    <select [(ngModel)]="filterContinent">
+    <option value="">All Continents</option>
+    <option *ngFor="let continent of continents" [value]="continent">{{ continent }}</option>
+  </select>
+
+    <!-- Display the filtered list of countries -->
+    <ul>
+        <li *ngFor="let country of filterByContinent(); let i = index">
+            <h4>{{ country.name }} ({{ country.continent }})</h4>
+            <button (click)="editCountry(i)">Edit</button>
+            <button (click)="removeCountry(i)">Remove</button>
+        </li>
+    </ul>
+</div>
