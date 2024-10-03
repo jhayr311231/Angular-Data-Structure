@@ -1,0 +1,19 @@
+<div>
+    <h2>Tool List</h2>
+
+    <!-- Input fields for adding a new tool -->
+    <input type="text" [(ngModel)]="newTool.name" placeholder="Enter tool name" />
+    <input type="text" [(ngModel)]="newTool.type" placeholder="Enter tool type" />
+    <input type="number" [(ngModel)]="newTool.quantity" placeholder="Enter quantity" />
+
+    <button (click)="addTool()">Add Tool</button>
+
+    <!-- Display the list of tools -->
+    <ul>
+        <li *ngFor="let tool of tools; let i = index">
+            <h4>{{ tool.name }} ({{ tool.type }}) - Quantity: {{ tool.quantity }}</h4>
+            <button (click)="editTool(i)">Edit</button>
+            <button (click)="removeTool(i)">Remove</button>
+        </li>
+    </ul>
+</div>

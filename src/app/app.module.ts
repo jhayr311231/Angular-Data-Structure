@@ -17,6 +17,7 @@ import { CountryListComponent } from './components/country-list/country-list.com
 import { SportsListComponent } from './components/sports-list/sports-list.component';
 import { VegetableListComponent } from './components/vegetable-list/vegetable-list.component';
 import { AnimalListComponent } from './components/animal-list/animal-list.component';
+import { ToolListComponent } from './components/tool-list/tool-list.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AnimalListComponent } from './components/animal-list/animal-list.compon
     SportsListComponent,
     VegetableListComponent,
     AnimalListComponent,
+    ToolListComponent,
 
     
   ],
