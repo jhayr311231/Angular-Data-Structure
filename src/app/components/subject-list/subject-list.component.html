@@ -1,0 +1,18 @@
+<div>
+    <h2>Subject List</h2>
+
+    <!-- Input fields for adding a new subject -->
+    <input type="text" [(ngModel)]="newSubject.name" placeholder="Subject Name" />
+    <input type="text" [(ngModel)]="newSubject.code" placeholder="Subject Code" />
+
+    <button (click)="addSubject()">Add Subject</button>
+
+    <!-- Display the list of subjects -->
+    <ul>
+        <li *ngFor="let subject of subjects; let i = index">
+            <h4>{{ subject.name }} ({{ subject.code }})</h4>
+            <button (click)="editSubject(i)">Edit</button>
+            <button (click)="removeSubject(i)">Remove</button>
+        </li>
+    </ul>
+</div>
