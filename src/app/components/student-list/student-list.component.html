@@ -1,0 +1,12 @@
+<div>
+    <h2>Student List</h2>
+
+    <!-- Input field for adding a new student -->
+    <input type="text" [(ngModel)]="newStudent" placeholder="Enter student name" />
+    <button (click)="addStudent()">Add Student</button>
+
+    <!-- Display the list of students -->
+    <ul>
+        <li *ngFor="let student of getStudentList()">{{ student }}</li>
+    </ul>
+</div>
