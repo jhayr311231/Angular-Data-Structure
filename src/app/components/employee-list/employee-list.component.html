@@ -1,0 +1,12 @@
+<div>
+    <h2>Employee List</h2>
+
+    <!-- Input field for adding a new employee -->
+    <input type="text" [(ngModel)]="newEmployee" placeholder="Enter employee name" />
+    <button (click)="addEmployee()">Add Employee</button>
+
+    <!-- Display the list of employees -->
+    <ul>
+        <li *ngFor="let employee of getEmployeeList()">{{ employee }}</li>
+    </ul>
+</div>
