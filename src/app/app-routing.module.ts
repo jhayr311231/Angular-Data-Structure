@@ -46,6 +46,8 @@ import { MealPlanListComponent } from './components/meal-plan-list/meal-plan-lis
 import { BudgetListComponent } from './components/budget-list/budget-list.component';
 import { PresentationListComponent } from './components/presentation-list/presentation-list.component';
 import { TourListComponent } from './components/tour-list/tour-list.component';
+import { EventListComponent } from './components/event-list/event-list.component';
+
 
 const routes: Routes = [
   { path: 'studentlist', component: StudentListComponent },
@@ -94,8 +96,8 @@ const routes: Routes = [
   { path: 'budgetlist', component:BudgetListComponent },
   { path: 'presentationlist', component:PresentationListComponent },
   { path: 'tourlist', component:TourListComponent },
+  { path: 'eventlist', component:EventListComponent },
 
-  
 ];
 
 

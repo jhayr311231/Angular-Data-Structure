@@ -1,0 +1,21 @@
+<div>
+    <h2>Event List</h2>
+
+    <!-- Search input -->
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search events" />
+
+    <!-- Input fields for adding a new event -->
+    <input type="text" [(ngModel)]="newEventName" placeholder="Enter event name" />
+    <input type="text" [(ngModel)]="newEventDate" placeholder="Enter event date" />
+    <input type="text" [(ngModel)]="newEventLocation" placeholder="Enter event location" />
+    <button (click)="addEvent()">Add Event</button>
+
+    <!-- Display the list of events -->
+    <ul>
+        <li *ngFor="let event of getFilteredEvents(); let i = index">
+            {{ event.name }} - {{ event.date }} - {{ event.location }}
+            <button (click)="editEvent(i)">Edit</button>
+            <button (click)="removeEvent(i)">Remove</button>
+        </li>
+    </ul>
+</div>
