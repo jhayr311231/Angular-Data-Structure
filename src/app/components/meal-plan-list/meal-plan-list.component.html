@@ -1,0 +1,19 @@
+<div>
+    <h2>Meal Plan List</h2>
+
+    <!-- Input field for adding/editing a meal -->
+    <input type="text" [(ngModel)]="newMeal" placeholder="Enter meal details" />
+    <button (click)="addMeal()">{{ editIndex === null ? 'Add Meal' : 'Update Meal' }}</button>
+
+    <!-- Input field for searching meals -->
+    <input type="text" [(ngModel)]="searchMeal" placeholder="Search meal" />
+
+    <!-- Display the list of meals -->
+    <ul>
+        <li *ngFor="let meal of getFilteredMeals(); let i = index">
+            {{ meal }}
+            <button (click)="editMeal(i)">Edit</button>
+            <button (click)="removeMeal(i)">Remove</button>
+        </li>
+    </ul>
+</div>
