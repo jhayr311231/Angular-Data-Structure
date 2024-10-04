@@ -1,0 +1,19 @@
+<div>
+    <h2>Artist List</h2>
+
+    <!-- Input field for adding/editing an artist -->
+    <input type="text" [(ngModel)]="newArtist" placeholder="Enter artist name" />
+    <button (click)="addArtist()">{{ editIndex === null ? 'Add Artist' : 'Update Artist' }}</button>
+
+    <!-- Input field for searching artists -->
+    <input type="text" [(ngModel)]="searchArtist" placeholder="Search artist" />
+
+    <!-- Display the list of artists -->
+    <ul>
+        <li *ngFor="let artist of getFilteredArtists(); let i = index">
+            {{ artist }}
+            <button (click)="editArtist(i)">Edit</button>
+            <button (click)="removeArtist(i)">Remove</button>
+        </li>
+    </ul>
+</div>

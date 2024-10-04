@@ -38,6 +38,8 @@ import { FurnitureListComponent } from './components/furniture-list/furniture-li
 import { AccessoryListComponent } from './components/accessory-list/accessory-list.component';
 import { BuildingListComponent } from './components/building-list/building-list.component';
 import { PaintingListComponent } from './components/painting-list/painting-list.component';
+import { ArtistListComponent } from './components/artist-list/artist-list.component';
+
 
 
 const routes: Routes = [
@@ -79,7 +81,7 @@ const routes: Routes = [
   { path: 'accessorylist', component:AccessoryListComponent },
   { path: 'buildinglist', component:BuildingListComponent },
   { path: 'paintinglist', component:PaintingListComponent },
-
+  { path: 'artistlist', component:ArtistListComponent },
 
 ];
 
