@@ -1,0 +1,31 @@
+<div>
+    <h2>Installed Software List</h2>
+
+    <!-- Input field for adding a new software -->
+    <input type="text" [(ngModel)]="newSoftware" id="newSoftware" name="newSoftware" placeholder="Enter software name" autocomplete="on" />
+    <button (click)="addSoftware()">Add Software</button>
+
+    <!-- Input field for searching software -->
+    <input type="text" [(ngModel)]="searchQuery" id="searchSoftware" name="searchSoftware" placeholder="Search software" autocomplete="on" />
+
+    <hr>
+
+    <!-- Display the list of software with options to edit, save, or remove -->
+    <ul>
+        <li *ngFor="let app of getFilteredSoftware(); let i = index">
+            <!-- Edit mode -->
+            <div *ngIf="editIndex === i">
+                <input [(ngModel)]="editedSoftware" id="editSoftware-{{i}}" name="editSoftware-{{i}}" placeholder="Edit software" autocomplete="off" />
+                <button (click)="saveEdit()">Save</button>
+                <button (click)="editIndex = null">Cancel</button>
+            </div>
+
+            <!-- Normal view mode -->
+            <div *ngIf="editIndex !== i">
+                {{ app }}
+                <button (click)="editSoftware(i)">Edit</button>
+                <button (click)="removeSoftware(i)">Remove</button>
+            </div>
+        </li>
+    </ul>
+</div>
