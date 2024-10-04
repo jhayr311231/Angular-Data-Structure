@@ -1,0 +1,20 @@
+<div>
+    <h2>Tour List</h2>
+
+    <!-- Search input -->
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search tours" />
+
+    <!-- Input fields for adding a new tour -->
+    <input type="text" [(ngModel)]="newTourDate" placeholder="Enter tour date" />
+    <input type="text" [(ngModel)]="newTourLocation" placeholder="Enter tour location" />
+    <button (click)="addTour()">Add Tour</button>
+
+    <!-- Display the list of tours -->
+    <ul>
+        <li *ngFor="let tour of getFilteredTours(); let i = index">
+            {{ tour.date }} - {{ tour.location }}
+            <button (click)="editTour(i)">Edit</button>
+            <button (click)="removeTour(i)">Remove</button>
+        </li>
+    </ul>
+</div>
