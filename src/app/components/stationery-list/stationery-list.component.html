@@ -1,0 +1,28 @@
+<div>
+    <h2>Stationery List</h2>
+
+    <!-- Input fields for adding a new stationery item -->
+    <input type="text" [(ngModel)]="newStationeryName" placeholder="Enter stationery name" />
+    <input type="number" [(ngModel)]="newStationeryQuantity" placeholder="Quantity" min="1" />
+    <button (click)="addStationery()">Add Stationery</button>
+
+    <!-- Search field -->
+    <input type="text" [(ngModel)]="searchQuery" placeholder="Search stationery" />
+
+    <!-- Display the list of stationery items -->
+    <ul>
+        <li *ngFor="let stationery of getFilteredList(); let i = index">
+            {{ stationery.name }} - Quantity: {{ stationery.quantity }}
+            <button (click)="editStationery(i)">Edit</button>
+            <button (click)="removeStationery(i)">Remove</button>
+        </li>
+    </ul>
+
+    <!-- Edit section -->
+    <div *ngIf="editIndex !== null">
+        <h3>Edit Stationery</h3>
+        <input type="text" [(ngModel)]="editedStationeryName" placeholder="Edit stationery name" />
+        <input type="number" [(ngModel)]="editedStationeryQuantity" placeholder="Edit quantity" min="1" />
+        <button (click)="saveEdit()">Save</button>
+    </div>
+</div>

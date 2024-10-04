@@ -28,6 +28,7 @@ import { GroceryListComponent } from './components/grocery-list/grocery-list.com
 import { ClassroomListComponent } from './components/classroom-list/classroom-list.component';
 import { InventoryListComponent } from './components/inventory-list/inventory-list.component';
 import { LectureListComponent } from './components/lecture-list/lecture-list.component';
+import { StationeryListComponent } from './components/stationery-list/stationery-list.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { LectureListComponent } from './components/lecture-list/lecture-list.com
     ClassroomListComponent,
     InventoryListComponent,
     LectureListComponent,
+    StationeryListComponent,
 
 
   ],
