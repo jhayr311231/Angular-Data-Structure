@@ -1,0 +1,30 @@
+<div>
+    <h2>Lecture List</h2>
+
+    <!-- Input fields for adding a new lecture -->
+    <input type="text" [(ngModel)]="newLectureTitle" placeholder="Enter lecture title" />
+    <input type="date" [(ngModel)]="newLectureDate" placeholder="Select lecture date" />
+    <input type="time" [(ngModel)]="newLectureTime" placeholder="Select lecture time" />
+    <button (click)="addLecture()">Add Lecture</button>
+
+    <!-- Search field -->
+    <input type="text" [(ngModel)]="searchQuery" placeholder="Search lectures" />
+
+    <!-- Display the list of lectures -->
+    <ul>
+        <li *ngFor="let lecture of getFilteredList(); let i = index">
+            {{ lecture.title }} - {{ lecture.date }} at {{ lecture.time }}
+            <button (click)="editLecture(i)">Edit</button>
+            <button (click)="removeLecture(i)">Remove</button>
+        </li>
+    </ul>
+
+    <!-- Edit section -->
+    <div *ngIf="editIndex !== null">
+        <h3>Edit Lecture</h3>
+        <input type="text" [(ngModel)]="editedLectureTitle" placeholder="Edit lecture title" />
+        <input type="date" [(ngModel)]="editedLectureDate" placeholder="Edit lecture date" />
+        <input type="time" [(ngModel)]="editedLectureTime" placeholder="Edit lecture time" />
+        <button (click)="saveEdit()">Save</button>
+    </div>
+</div>
