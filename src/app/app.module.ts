@@ -32,6 +32,7 @@ import { StationeryListComponent } from './components/stationery-list/stationery
 import { FlowerListComponent } from './components/flower-list/flower-list.component';
 import { DestinationListComponent } from './components/destination-list/destination-list.component';
 import { LaptopListComponent } from './components/laptop-list/laptop-list.component';
+import { LaptopSpecificationsListComponent } from './components/laptop-specifications-list/laptop-specifications-list.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { LaptopListComponent } from './components/laptop-list/laptop-list.compon
     FlowerListComponent,
     DestinationListComponent,
     LaptopListComponent,
+    LaptopSpecificationsListComponent,
 
 
   ],

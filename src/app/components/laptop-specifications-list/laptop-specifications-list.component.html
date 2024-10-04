@@ -1,0 +1,34 @@
+<div>
+    <h2>Laptop Specifications List</h2>
+
+    <!-- Input fields for adding a new specification -->
+    <input type="text" [(ngModel)]="newSpecModel" placeholder="Enter laptop model" />
+    <input type="text" [(ngModel)]="newSpecProcessor" placeholder="Enter processor" />
+    <input type="text" [(ngModel)]="newSpecRam" placeholder="Enter RAM size" />
+    <input type="text" [(ngModel)]="newSpecStorage" placeholder="Enter storage type and size" />
+    <input type="text" [(ngModel)]="newSpecGraphics" placeholder="Enter graphics card" />
+    <button (click)="addSpecification()">Add Specification</button>
+
+    <!-- Search field -->
+    <input type="text" [(ngModel)]="searchQuery" placeholder="Search specifications" />
+
+    <!-- Display the list of specifications -->
+    <ul>
+        <li *ngFor="let spec of getFilteredSpecifications(); let i = index">
+            {{ spec.model }} - {{ spec.processor }} - {{ spec.ram }} - {{ spec.storage }} - {{ spec.graphics }}
+            <button (click)="editSpecification(i)">Edit</button>
+            <button (click)="removeSpecification(i)">Remove</button>
+        </li>
+    </ul>
+
+    <!-- Edit section -->
+    <div *ngIf="editIndex !== null">
+        <h3>Edit Specification</h3>
+        <input type="text" [(ngModel)]="editedSpecModel" placeholder="Edit laptop model" />
+        <input type="text" [(ngModel)]="editedSpecProcessor" placeholder="Edit processor" />
+        <input type="text" [(ngModel)]="editedSpecRam" placeholder="Edit RAM size" />
+        <input type="text" [(ngModel)]="editedSpecStorage" placeholder="Edit storage type and size" />
+        <input type="text" [(ngModel)]="editedSpecGraphics" placeholder="Edit graphics card" />
+        <button (click)="saveEdit()">Save</button>
+    </div>
+</div>
