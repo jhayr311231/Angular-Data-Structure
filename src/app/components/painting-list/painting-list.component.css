@@ -1,0 +1,49 @@
+div {
+    text-align: left;
+}
+
+h2 {
+    color: #2c3e50;
+}
+
+input {
+    padding: 8px;
+    margin-right: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: none;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 5px 0;
+    display: flex;
+    /* This aligns image and text horizontally */
+    align-items: center;
+    /* Vertically centers the image with the text */
+}
+
+.thumbnail {
+    width: 50px;
+    /* Controls the width of the image */
+    height: auto;
+    /* Maintains aspect ratio */
+    margin-right: 10px;
+    /* Adds some spacing between the image and text */
+}

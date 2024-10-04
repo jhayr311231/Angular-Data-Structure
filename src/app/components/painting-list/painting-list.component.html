@@ -1,0 +1,25 @@
+<div class="painting-list-container">
+    <h2>Painting List</h2>
+
+    <!-- Input fields for adding or editing a painting -->
+    <div class="input-group">
+        <input type="text" [(ngModel)]="newPainting.name" placeholder="Enter Painting Name" required />
+        <input type="text" [(ngModel)]="newPainting.artist" placeholder="Enter Artist Name" required />
+        <input type="number" [(ngModel)]="newPainting.year" placeholder="Enter Year" min="1" required />
+        <input type="text" [(ngModel)]="newPainting.imageUrl" placeholder="Enter Image URL" />
+        <button (click)="addPainting()">{{ editingIndex !== null ? 'Update Painting' : 'Add Painting' }}</button>
+    </div>
+
+    <!-- Search field for paintings -->
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search Painting" />
+
+    <!-- Display the list of paintings -->
+    <ul>
+        <li *ngFor="let painting of getFilteredPaintings(); let i = index">
+            <img [src]="painting.imageUrl" alt="{{ painting.name }}" class="thumbnail" *ngIf="painting.imageUrl" />
+            <strong>{{ painting.name }}</strong> by {{ painting.artist }} ({{ painting.year }})
+            <button (click)="editPainting(i)">Edit</button>
+            <button (click)="removePainting(i)">Remove</button>
+        </li>
+    </ul>
+</div>

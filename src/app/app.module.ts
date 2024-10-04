@@ -40,6 +40,7 @@ import { TvShowListComponent } from './components/tv-show-list/tv-show-list.comp
 import { FurnitureListComponent } from './components/furniture-list/furniture-list.component';
 import { AccessoryListComponent } from './components/accessory-list/accessory-list.component';
 import { BuildingListComponent } from './components/building-list/building-list.component';
+import { PaintingListComponent } from './components/painting-list/painting-list.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { BuildingListComponent } from './components/building-list/building-list.
     FurnitureListComponent,
     AccessoryListComponent,
     BuildingListComponent,
+    PaintingListComponent,
 
 
   ],

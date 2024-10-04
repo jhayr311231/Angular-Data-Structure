@@ -37,6 +37,7 @@ import { TvShowListComponent } from './components/tv-show-list/tv-show-list.comp
 import { FurnitureListComponent } from './components/furniture-list/furniture-list.component';
 import { AccessoryListComponent } from './components/accessory-list/accessory-list.component';
 import { BuildingListComponent } from './components/building-list/building-list.component';
+import { PaintingListComponent } from './components/painting-list/painting-list.component';
 
 
 const routes: Routes = [
@@ -77,6 +78,9 @@ const routes: Routes = [
   { path: 'furniturelist', component:FurnitureListComponent },
   { path: 'accessorylist', component:AccessoryListComponent },
   { path: 'buildinglist', component:BuildingListComponent },
+  { path: 'paintinglist', component:PaintingListComponent },
+
+
 ];
 
 
