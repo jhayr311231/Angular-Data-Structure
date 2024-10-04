@@ -1,0 +1,35 @@
+<div>
+    <h2>Inventory List</h2>
+
+    <!-- Input fields for adding a new item -->
+    <input type="text" [(ngModel)]="newItemName" id="newItemName" name="newItemName" placeholder="Enter item name" autocomplete="on" />
+    <input type="number" [(ngModel)]="newItemQuantity" id="newItemQuantity" name="newItemQuantity" placeholder="Enter item quantity" autocomplete="on" />
+    <input type="number" [(ngModel)]="newItemPrice" id="newItemPrice" name="newItemPrice" placeholder="Enter item price" autocomplete="on" />
+    <button (click)="addItem()">Add Item</button>
+
+    <!-- Input field for searching items -->
+    <input type="text" [(ngModel)]="searchQuery" id="searchItem" name="searchItem" placeholder="Search items" autocomplete="on" />
+
+    <hr>
+
+    <!-- Display the list of items with options to edit, save, or remove -->
+    <ul>
+        <li *ngFor="let item of getFilteredList(); let i = index">
+            <!-- Edit mode -->
+            <div *ngIf="editIndex === i">
+                <input [(ngModel)]="editedItemName" id="editItemName-{{i}}" name="editItemName-{{i}}" placeholder="Edit item name" autocomplete="off" />
+                <input [(ngModel)]="editedItemQuantity" id="editItemQuantity-{{i}}" name="editItemQuantity-{{i}}" placeholder="Edit item quantity" autocomplete="off" />
+                <input [(ngModel)]="editedItemPrice" id="editItemPrice-{{i}}" name="editItemPrice-{{i}}" placeholder="Edit item price" autocomplete="off" />
+                <button (click)="saveEdit()">Save</button>
+                <button (click)="editIndex = null">Cancel</button>
+            </div>
+
+            <!-- Normal view mode -->
+            <div *ngIf="editIndex !== i">
+                {{ item.name }} - Quantity: {{ item.quantity }} - Price: Php {{ item.price | number: '1.2-2' }}
+                <button (click)="editItem(i)">Edit</button>
+                <button (click)="removeItem(i)">Remove</button>
+            </div>
+        </li>
+    </ul>
+</div>
