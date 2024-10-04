@@ -1,0 +1,19 @@
+<div>
+    <h2>Exercise List</h2>
+
+    <!-- Input field for adding/editing an exercise -->
+    <input type="text" [(ngModel)]="newExercise" placeholder="Enter exercise name" />
+    <button (click)="addExercise()">{{ editIndex === null ? 'Add Exercise' : 'Update Exercise' }}</button>
+
+    <!-- Input field for searching exercises -->
+    <input type="text" [(ngModel)]="searchExercise" placeholder="Search exercise" />
+
+    <!-- Display the list of exercises -->
+    <ul>
+        <li *ngFor="let exercise of getFilteredExercises(); let i = index">
+            {{ exercise }}
+            <button (click)="editExercise(i)">Edit</button>
+            <button (click)="removeExercise(i)">Remove</button>
+        </li>
+    </ul>
+</div>
