@@ -43,6 +43,7 @@ import { ComposerListComponent } from './components/composer-list/composer-list.
 import { PodcastListComponent } from './components/podcast-list/podcast-list.component';
 import { ExerciseListComponent } from './components/exercise-list/exercise-list.component';
 import { MealPlanListComponent } from './components/meal-plan-list/meal-plan-list.component';
+import { BudgetListComponent } from './components/budget-list/budget-list.component';
 
 
 const routes: Routes = [
@@ -89,8 +90,8 @@ const routes: Routes = [
   { path: 'podcastlist', component:PodcastListComponent },
   { path: 'exerciselist', component:ExerciseListComponent },
   { path: 'mealplanlist', component:MealPlanListComponent },
+  { path: 'budgetlist', component:BudgetListComponent },
 
-  
 
 ];
 

@@ -1,0 +1,20 @@
+<div>
+    <h2>Budget List</h2>
+
+    <!-- Input fields for adding/editing a budget item -->
+    <input type="text" [(ngModel)]="newItem.name" placeholder="Enter item name" />
+    <input type="number" [(ngModel)]="newItem.amount" placeholder="Enter amount" />
+    <button (click)="addItem()">{{ editIndex === null ? 'Add Item' : 'Update Item' }}</button>
+
+    <!-- Input field for searching budget items -->
+    <input type="text" [(ngModel)]="searchItem" placeholder="Search item" />
+
+    <!-- Display the list of budget items -->
+    <ul>
+        <li *ngFor="let item of getFilteredItems(); let i = index">
+            {{ item.name }} - Php{{ item.amount }}
+            <button (click)="editItem(i)">Edit</button>
+            <button (click)="removeItem(i)">Remove</button>
+        </li>
+    </ul>
+</div>
