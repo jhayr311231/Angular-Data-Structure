@@ -1,0 +1,33 @@
+<div>
+    <h2>Phone Contact List</h2>
+
+    <!-- Input fields for adding a new contact -->
+    <input type="text" [(ngModel)]="newContactName" id="newContactName" name="newContactName" placeholder="Enter contact name" autocomplete="on" />
+    <input type="text" [(ngModel)]="newContactNumber" id="newContactNumber" name="newContactNumber" placeholder="Enter contact number" autocomplete="on" />
+    <button (click)="addContact()">Add Contact</button>
+
+    <!-- Input field for searching contacts -->
+    <input type="text" [(ngModel)]="searchQuery" id="searchContact" name="searchContact" placeholder="Search contacts" autocomplete="on" />
+
+    <hr>
+
+    <!-- Display the list of contacts with options to edit, save, or remove -->
+    <ul>
+        <li *ngFor="let contact of getFilteredContacts(); let i = index">
+            <!-- Edit mode -->
+            <div *ngIf="editIndex === i">
+                <input [(ngModel)]="editedContactName" id="editContactName-{{i}}" name="editContactName-{{i}}" placeholder="Edit name" autocomplete="off" />
+                <input [(ngModel)]="editedContactNumber" id="editContactNumber-{{i}}" name="editContactNumber-{{i}}" placeholder="Edit number" autocomplete="off" />
+                <button (click)="saveEdit()">Save</button>
+                <button (click)="editIndex = null">Cancel</button>
+            </div>
+
+            <!-- Normal view mode -->
+            <div *ngIf="editIndex !== i">
+                {{ contact.name }}: {{ contact.number }}
+                <button (click)="editContact(i)">Edit</button>
+                <button (click)="removeContact(i)">Remove</button>
+            </div>
+        </li>
+    </ul>
+</div>
