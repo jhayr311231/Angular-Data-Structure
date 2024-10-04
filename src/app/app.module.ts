@@ -24,6 +24,7 @@ import { SoftwareListComponent } from './components/software-list/software-list.
 import { PhoneContactListComponent } from './components/phone-contact-list/phone-contact-list.component';
 import { MusicPlaylistComponent } from './components/music-playlist/music-playlist.component';
 import { FoodMenuComponent } from './components/food-menu/food-menu.component';
+import { GroceryListComponent } from './components/grocery-list/grocery-list.component';
 
 @NgModule({
   declarations: [
@@ -49,8 +50,9 @@ import { FoodMenuComponent } from './components/food-menu/food-menu.component';
     PhoneContactListComponent,
     MusicPlaylistComponent,
     FoodMenuComponent,
+    GroceryListComponent,
 
-    
+
   ],
   imports: [
     BrowserModule,
