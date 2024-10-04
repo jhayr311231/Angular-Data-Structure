@@ -47,6 +47,7 @@ import { PodcastListComponent } from './components/podcast-list/podcast-list.com
 import { ExerciseListComponent } from './components/exercise-list/exercise-list.component';
 import { MealPlanListComponent } from './components/meal-plan-list/meal-plan-list.component';
 import { BudgetListComponent } from './components/budget-list/budget-list.component';
+import { PresentationListComponent } from './components/presentation-list/presentation-list.component';
 
 @NgModule({
   declarations: [
@@ -95,6 +96,7 @@ import { BudgetListComponent } from './components/budget-list/budget-list.compon
     ExerciseListComponent,
     MealPlanListComponent,
     BudgetListComponent,
+    PresentationListComponent,
 
 
   ],

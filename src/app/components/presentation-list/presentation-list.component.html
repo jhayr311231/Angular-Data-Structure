@@ -1,0 +1,19 @@
+<div>
+    <h2>Presentation List</h2>
+
+    <!-- Search input -->
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search presentations" />
+
+    <!-- Input field for adding a new presentation -->
+    <input type="text" [(ngModel)]="newPresentation" placeholder="Enter presentation topic" />
+    <button (click)="addPresentation()">Add Presentation</button>
+
+    <!-- Display the list of presentations -->
+    <ul>
+        <li *ngFor="let presentation of getFilteredPresentations(); let i = index">
+            {{ presentation }}
+            <button (click)="editPresentation(i)">Edit</button>
+            <button (click)="removePresentation(i)">Remove</button>
+        </li>
+    </ul>
+</div>
