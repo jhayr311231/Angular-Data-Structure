@@ -38,6 +38,7 @@ import { MobileAppListComponent } from './components/mobile-app-list/mobile-app-
 import { VideoListComponent } from './components/video-list/video-list.component';
 import { TvShowListComponent } from './components/tv-show-list/tv-show-list.component';
 import { FurnitureListComponent } from './components/furniture-list/furniture-list.component';
+import { AccessoryListComponent } from './components/accessory-list/accessory-list.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { FurnitureListComponent } from './components/furniture-list/furniture-li
     VideoListComponent,
     TvShowListComponent,
     FurnitureListComponent,
+    AccessoryListComponent,
 
 
   ],

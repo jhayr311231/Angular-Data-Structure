@@ -1,0 +1,21 @@
+<div class="accessory-list-container">
+    <h2>Accessory List</h2>
+
+    <div class="input-group">
+        <input type="text" [(ngModel)]="newItem.name" placeholder="Enter Accessory Name" />
+        <input type="text" [(ngModel)]="newItem.type" placeholder="Enter Type" />
+        <input type="number" [(ngModel)]="newItem.price" placeholder="Enter Price" min="0" />
+        <input type="text" [(ngModel)]="newItem.imageUrl" placeholder="Enter Image URL" />
+        <button (click)="addAccessory()">Add Accessory</button>
+    </div>
+
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search Accessory" />
+
+    <ul>
+        <li *ngFor="let item of getFilteredItems(); let i = index">
+            <img [src]="item.imageUrl" alt="{{ item.name }}" style="width: 50px; height: auto;" /> {{ item.name }} - {{ item.type }} - Php{{ item.price }}
+            <button (click)="editAccessory(i)">Edit</button>
+            <button (click)="removeAccessory(i)">Remove</button>
+        </li>
+    </ul>
+</div>
