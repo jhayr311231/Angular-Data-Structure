@@ -1,0 +1,23 @@
+<div class="building-list-container">
+    <h2>Building List</h2>
+
+    <!-- Input fields for adding or editing a building -->
+    <div class="input-group">
+        <input type="text" [(ngModel)]="newBuilding.name" placeholder="Enter Building Name" required />
+        <input type="number" [(ngModel)]="newBuilding.floors" placeholder="Enter Number of Floors" min="1" required />
+        <input type="text" [(ngModel)]="newBuilding.description" placeholder="Enter Building Description" required />
+        <button (click)="addBuilding()">{{ editingIndex !== null ? 'Update Building' : 'Add Building' }}</button>
+    </div>
+
+    <!-- Search field for buildings -->
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search Building" />
+
+    <!-- Display the list of buildings -->
+    <ul>
+        <li *ngFor="let building of getFilteredBuildings(); let i = index">
+            <strong>{{ building.name }}</strong> - {{ building.floors }} floors - {{ building.description }}
+            <button (click)="editBuilding(i)">Edit</button>
+            <button (click)="removeBuilding(i)">Remove</button>
+        </li>
+    </ul>
+</div>
