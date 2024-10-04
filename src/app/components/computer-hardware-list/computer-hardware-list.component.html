@@ -1,0 +1,32 @@
+<div>
+    <h2>Computer Hardware List</h2>
+
+    <!-- Input fields for adding new hardware -->
+    <input type="text" [(ngModel)]="newHardwareName" placeholder="Enter hardware name" />
+    <input type="text" [(ngModel)]="newHardwareType" placeholder="Enter hardware type" />
+    <input type="text" [(ngModel)]="newHardwareBrand" placeholder="Enter brand" />
+    <input type="text" [(ngModel)]="newHardwareSpecifications" placeholder="Enter specifications" />
+    <button (click)="addHardware()">Add Hardware</button>
+
+    <!-- Search field -->
+    <input type="text" [(ngModel)]="searchQuery" placeholder="Search hardware" />
+
+    <!-- Display the list of hardware -->
+    <ul>
+        <li *ngFor="let hw of getFilteredHardware(); let i = index">
+            {{ hw.name }} - {{ hw.type }} - {{ hw.brand }} - {{ hw.specifications }}
+            <button (click)="editHardware(i)">Edit</button>
+            <button (click)="removeHardware(i)">Remove</button>
+        </li>
+    </ul>
+
+    <!-- Edit section -->
+    <div *ngIf="editIndex !== null">
+        <h3>Edit Hardware</h3>
+        <input type="text" [(ngModel)]="editedHardwareName" placeholder="Edit hardware name" />
+        <input type="text" [(ngModel)]="editedHardwareType" placeholder="Edit hardware type" />
+        <input type="text" [(ngModel)]="editedHardwareBrand" placeholder="Edit brand" />
+        <input type="text" [(ngModel)]="editedHardwareSpecifications" placeholder="Edit specifications" />
+        <button (click)="saveEdit()">Save</button>
+    </div>
+</div>
