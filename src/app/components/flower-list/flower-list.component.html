@@ -1,0 +1,30 @@
+<div>
+    <h2>Flower List for Wedding</h2>
+
+    <!-- Input fields for adding a new flower -->
+    <input type="text" [(ngModel)]="newFlowerName" placeholder="Enter flower name" />
+    <input type="text" [(ngModel)]="newFlowerColor" placeholder="Enter flower color" />
+    <input type="number" [(ngModel)]="newFlowerQuantity" placeholder="Quantity" min="1" />
+    <button (click)="addFlower()">Add Flower</button>
+
+    <!-- Search field -->
+    <input type="text" [(ngModel)]="searchQuery" placeholder="Search flower" />
+
+    <!-- Display the list of flowers -->
+    <ul>
+        <li *ngFor="let flower of getFilteredList(); let i = index">
+            {{ flower.name }} ({{ flower.color }}) - Quantity: {{ flower.quantity }}
+            <button (click)="editFlower(i)">Edit</button>
+            <button (click)="removeFlower(i)">Remove</button>
+        </li>
+    </ul>
+
+    <!-- Edit section -->
+    <div *ngIf="editIndex !== null">
+        <h3>Edit Flower</h3>
+        <input type="text" [(ngModel)]="editedFlowerName" placeholder="Edit flower name" />
+        <input type="text" [(ngModel)]="editedFlowerColor" placeholder="Edit flower color" />
+        <input type="number" [(ngModel)]="editedFlowerQuantity" placeholder="Edit quantity" min="1" />
+        <button (click)="saveEdit()">Save</button>
+    </div>
+</div>
