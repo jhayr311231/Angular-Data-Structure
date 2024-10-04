@@ -50,6 +50,7 @@ import { BudgetListComponent } from './components/budget-list/budget-list.compon
 import { PresentationListComponent } from './components/presentation-list/presentation-list.component';
 import { TourListComponent } from './components/tour-list/tour-list.component';
 import { EventListComponent } from './components/event-list/event-list.component';
+import { DeveloperToolsListComponent } from './components/developer-tools-list/developer-tools-list.component';
 
 @NgModule({
   declarations: [
@@ -101,6 +102,7 @@ import { EventListComponent } from './components/event-list/event-list.component
     PresentationListComponent,
     TourListComponent,
     EventListComponent,
+    DeveloperToolsListComponent,
 
 
   ],
