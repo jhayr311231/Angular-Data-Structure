@@ -1,0 +1,31 @@
+<div>
+    <h2>Game List</h2>
+
+    <!-- Input field for adding a new game -->
+    <input type="text" [(ngModel)]="newGame" id="newGame" name="newGame" placeholder="Enter video game" autocomplete="on" />
+    <button (click)="addGame()">Add Game</button>
+
+    <!-- Input field for searching games -->
+    <input type="text" [(ngModel)]="searchQuery" id="searchGame" name="searchGame" placeholder="Search games" autocomplete="on" />
+
+    <hr>
+
+    <!-- Display the list of games with options to edit, save, or remove -->
+    <ul>
+        <li *ngFor="let game of getFilteredGames(); let i = index">
+            <!-- Edit mode -->
+            <div *ngIf="editIndex === i">
+                <input [(ngModel)]="editedGame" id="editGame-{{i}}" name="editGame-{{i}}" placeholder="Edit game" autocomplete="off" />
+                <button (click)="saveEdit()">Save</button>
+                <button (click)="editIndex = null">Cancel</button>
+            </div>
+
+            <!-- Normal view mode -->
+            <div *ngIf="editIndex !== i">
+                {{ game }}
+                <button (click)="editGame(i)">Edit</button>
+                <button (click)="removeGame(i)">Remove</button>
+            </div>
+        </li>
+    </ul>
+</div>
