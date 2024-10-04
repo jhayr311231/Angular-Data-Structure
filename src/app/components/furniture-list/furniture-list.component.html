@@ -1,0 +1,19 @@
+<div>
+    <h2>Furniture List</h2>
+
+    <input type="text" [(ngModel)]="newItem.name" placeholder="Enter Furniture Name" />
+    <input type="text" [(ngModel)]="newItem.category" placeholder="Enter Category" />
+    <input type="number" [(ngModel)]="newItem.price" placeholder="Enter Price" />
+    <input type="text" [(ngModel)]="newItem.imageUrl" placeholder="Enter Image URL" />
+    <button (click)="addFurniture()">Add Furniture</button>
+
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search Furniture" />
+
+    <ul>
+        <li *ngFor="let item of getFilteredItems(); let i = index">
+            <img [src]="item.imageUrl" alt="{{ item.name }}" style="width: 50px; height: auto;" /> {{ item.name }} - {{ item.category }} - Php{{ item.price }}
+            <button (click)="editFurniture(i)">Edit</button>
+            <button (click)="removeFurniture(i)">Remove</button>
+        </li>
+    </ul>
+</div>
