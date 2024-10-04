@@ -1,0 +1,33 @@
+<div>
+    <h2>Food Menu</h2>
+
+    <!-- Input fields for adding a new food item -->
+    <input type="text" [(ngModel)]="newFoodName" id="newFoodName" name="newFoodName" placeholder="Enter food name" autocomplete="on" />
+    <input type="number" [(ngModel)]="newFoodPrice" id="newFoodPrice" name="newFoodPrice" placeholder="Enter food price" autocomplete="on" />
+    <button (click)="addFood()">Add Food</button>
+
+    <!-- Input field for searching food items -->
+    <input type="text" [(ngModel)]="searchQuery" id="searchFood" name="searchFood" placeholder="Search food items" autocomplete="on" />
+
+    <hr>
+
+    <!-- Display the list of food items with options to edit, save, or remove -->
+    <ul>
+        <li *ngFor="let food of getFilteredMenu(); let i = index">
+            <!-- Edit mode -->
+            <div *ngIf="editIndex === i">
+                <input [(ngModel)]="editedFoodName" id="editFoodName-{{i}}" name="editFoodName-{{i}}" placeholder="Edit food name" autocomplete="off" />
+                <input [(ngModel)]="editedFoodPrice" id="editFoodPrice-{{i}}" name="editFoodPrice-{{i}}" placeholder="Edit food price" autocomplete="off" />
+                <button (click)="saveEdit()">Save</button>
+                <button (click)="editIndex = null">Cancel</button>
+            </div>
+
+            <!-- Normal view mode -->
+            <div *ngIf="editIndex !== i">
+                {{ food.name }} - Php{{ food.price.toFixed(2) }}
+                <button (click)="editFood(i)">Edit</button>
+                <button (click)="removeFood(i)">Remove</button>
+            </div>
+        </li>
+    </ul>
+</div>

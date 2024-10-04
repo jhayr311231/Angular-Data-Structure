@@ -23,6 +23,7 @@ import { GameListComponent } from './components/game-list/game-list.component';
 import { SoftwareListComponent } from './components/software-list/software-list.component';
 import { PhoneContactListComponent } from './components/phone-contact-list/phone-contact-list.component';
 import { MusicPlaylistComponent } from './components/music-playlist/music-playlist.component';
+import { FoodMenuComponent } from './components/food-menu/food-menu.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { MusicPlaylistComponent } from './components/music-playlist/music-playli
     SoftwareListComponent,
     PhoneContactListComponent,
     MusicPlaylistComponent,
+    FoodMenuComponent,
 
     
   ],
