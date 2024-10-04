@@ -1,0 +1,33 @@
+<div>
+    <h2>Music Playlist</h2>
+
+    <!-- Input fields for adding a new song -->
+    <input type="text" [(ngModel)]="newSongTitle" id="newSongTitle" name="newSongTitle" placeholder="Enter song title" autocomplete="on" />
+    <input type="text" [(ngModel)]="newSongArtist" id="newSongArtist" name="newSongArtist" placeholder="Enter artist name" autocomplete="on" />
+    <button (click)="addSong()">Add Song</button>
+
+    <!-- Input field for searching songs -->
+    <input type="text" [(ngModel)]="searchQuery" id="searchSong" name="searchSong" placeholder="Search songs" autocomplete="on" />
+
+    <hr>
+
+    <!-- Display the list of songs with options to edit, save, or remove -->
+    <ul>
+        <li *ngFor="let song of getFilteredPlaylist(); let i = index">
+            <!-- Edit mode -->
+            <div *ngIf="editIndex === i">
+                <input [(ngModel)]="editedSongTitle" id="editSongTitle-{{i}}" name="editSongTitle-{{i}}" placeholder="Edit title" autocomplete="off" />
+                <input [(ngModel)]="editedSongArtist" id="editSongArtist-{{i}}" name="editSongArtist-{{i}}" placeholder="Edit artist" autocomplete="off" />
+                <button (click)="saveEdit()">Save</button>
+                <button (click)="editIndex = null">Cancel</button>
+            </div>
+
+            <!-- Normal view mode -->
+            <div *ngIf="editIndex !== i">
+                {{ song.title }} by {{ song.artist }}
+                <button (click)="editSong(i)">Edit</button>
+                <button (click)="removeSong(i)">Remove</button>
+            </div>
+        </li>
+    </ul>
+</div>
