@@ -1,0 +1,33 @@
+<div>
+    <h2>Classroom List</h2>
+
+    <!-- Input fields for adding a new student -->
+    <input type="text" [(ngModel)]="newStudentName" id="newStudentName" name="newStudentName" placeholder="Enter student name" autocomplete="on" />
+    <input type="number" [(ngModel)]="newStudentAge" id="newStudentAge" name="newStudentAge" placeholder="Enter student age" autocomplete="on" />
+    <button (click)="addStudent()">Add Student</button>
+
+    <!-- Input field for searching students -->
+    <input type="text" [(ngModel)]="searchQuery" id="searchStudent" name="searchStudent" placeholder="Search students" autocomplete="on" />
+
+    <hr>
+
+    <!-- Display the list of students with options to edit, save, or remove -->
+    <ul>
+        <li *ngFor="let student of getFilteredList(); let i = index">
+            <!-- Edit mode -->
+            <div *ngIf="editIndex === i">
+                <input [(ngModel)]="editedStudentName" id="editStudentName-{{i}}" name="editStudentName-{{i}}" placeholder="Edit student name" autocomplete="off" />
+                <input [(ngModel)]="editedStudentAge" id="editStudentAge-{{i}}" name="editStudentAge-{{i}}" placeholder="Edit student age" autocomplete="off" />
+                <button (click)="saveEdit()">Save</button>
+                <button (click)="editIndex = null">Cancel</button>
+            </div>
+
+            <!-- Normal view mode -->
+            <div *ngIf="editIndex !== i">
+                {{ student.name }} - Age: {{ student.age }}
+                <button (click)="editStudent(i)">Edit</button>
+                <button (click)="removeStudent(i)">Remove</button>
+            </div>
+        </li>
+    </ul>
+</div>
