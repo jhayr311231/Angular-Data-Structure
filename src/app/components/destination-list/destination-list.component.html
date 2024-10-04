@@ -1,0 +1,30 @@
+<div>
+    <h2>Destination List</h2>
+
+    <!-- Input fields for adding a new destination -->
+    <input type="text" [(ngModel)]="newDestinationName" placeholder="Enter destination name" />
+    <input type="text" [(ngModel)]="newDestinationCountry" placeholder="Enter country" />
+    <input type="number" [(ngModel)]="newDestinationDuration" placeholder="Duration (days)" min="1" />
+    <button (click)="addDestination()">Add Destination</button>
+
+    <!-- Search field -->
+    <input type="text" [(ngModel)]="searchQuery" placeholder="Search destination" />
+
+    <!-- Display the list of destinations -->
+    <ul>
+        <li *ngFor="let destination of getFilteredList(); let i = index">
+            {{ destination.name }} ({{ destination.country }}) - Duration: {{ destination.duration }} days
+            <button (click)="editDestination(i)">Edit</button>
+            <button (click)="removeDestination(i)">Remove</button>
+        </li>
+    </ul>
+
+    <!-- Edit section -->
+    <div *ngIf="editIndex !== null">
+        <h3>Edit Destination</h3>
+        <input type="text" [(ngModel)]="editedDestinationName" placeholder="Edit destination name" />
+        <input type="text" [(ngModel)]="editedDestinationCountry" placeholder="Edit country" />
+        <input type="number" [(ngModel)]="editedDestinationDuration" placeholder="Edit duration" min="1" />
+        <button (click)="saveEdit()">Save</button>
+    </div>
+</div>
