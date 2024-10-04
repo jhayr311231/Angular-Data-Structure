@@ -1,0 +1,32 @@
+<div>
+    <h2>Video List</h2>
+
+    <!-- Input fields for adding new video -->
+    <input type="text" [(ngModel)]="newVideoTitle" placeholder="Enter video title" />
+    <input type="text" [(ngModel)]="newVideoGenre" placeholder="Enter video genre" />
+    <input type="number" [(ngModel)]="newVideoRating" placeholder="Enter video rating" min="0" max="5" step="0.1" />
+    <input type="text" [(ngModel)]="newVideoDescription" placeholder="Enter video description" />
+    <button (click)="addVideo()">Add Video</button>
+
+    <!-- Search field -->
+    <input type="text" [(ngModel)]="searchQuery" placeholder="Search video" />
+
+    <!-- Display the list of videos -->
+    <ul>
+        <li *ngFor="let video of getFilteredVideos(); let i = index">
+            {{ video.title }} - {{ video.genre }} - Rating: {{ video.rating }} - {{ video.description }}
+            <button (click)="editVideo(i)">Edit</button>
+            <button (click)="removeVideo(i)">Remove</button>
+        </li>
+    </ul>
+
+    <!-- Edit section -->
+    <div *ngIf="editIndex !== null">
+        <h3>Edit Video</h3>
+        <input type="text" [(ngModel)]="editedVideoTitle" placeholder="Edit video title" />
+        <input type="text" [(ngModel)]="editedVideoGenre" placeholder="Edit video genre" />
+        <input type="number" [(ngModel)]="editedVideoRating" placeholder="Edit video rating" min="0" max="5" step="0.1" />
+        <input type="text" [(ngModel)]="editedVideoDescription" placeholder="Edit video description" />
+        <button (click)="saveEdit()">Save</button>
+    </div>
+</div>
