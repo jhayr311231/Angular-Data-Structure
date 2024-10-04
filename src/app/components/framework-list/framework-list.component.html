@@ -1,0 +1,21 @@
+<div>
+    <h2>Framework List</h2>
+
+    <!-- Search input -->
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search frameworks" />
+
+    <!-- Input fields for adding a new framework -->
+    <input type="text" [(ngModel)]="newFrameworkName" placeholder="Enter framework name" />
+    <input type="text" [(ngModel)]="newFrameworkVersion" placeholder="Enter framework version" />
+    <input type="text" [(ngModel)]="newFrameworkDescription" placeholder="Enter framework description" />
+    <button (click)="addFramework()">Add Framework</button>
+
+    <!-- Display the list of frameworks -->
+    <ul>
+        <li *ngFor="let framework of getFilteredFrameworks(); let i = index">
+            {{ framework.name }} - {{ framework.version }} - {{ framework.description }}
+            <button (click)="editFramework(i)">Edit</button>
+            <button (click)="removeFramework(i)">Remove</button>
+        </li>
+    </ul>
+</div>
