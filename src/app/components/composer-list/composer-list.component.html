@@ -1,0 +1,19 @@
+<div>
+    <h2>Composer List</h2>
+
+    <!-- Input field for adding/editing a composer -->
+    <input type="text" [(ngModel)]="newComposer" placeholder="Enter composer name" />
+    <button (click)="addComposer()">{{ editIndex === null ? 'Add Composer' : 'Update Composer' }}</button>
+
+    <!-- Input field for searching composers -->
+    <input type="text" [(ngModel)]="searchComposer" placeholder="Search composer" />
+
+    <!-- Display the list of composers -->
+    <ul>
+        <li *ngFor="let composer of getFilteredComposers(); let i = index">
+            {{ composer }}
+            <button (click)="editComposer(i)">Edit</button>
+            <button (click)="removeComposer(i)">Remove</button>
+        </li>
+    </ul>
+</div>

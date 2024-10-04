@@ -42,6 +42,7 @@ import { AccessoryListComponent } from './components/accessory-list/accessory-li
 import { BuildingListComponent } from './components/building-list/building-list.component';
 import { PaintingListComponent } from './components/painting-list/painting-list.component';
 import { ArtistListComponent } from './components/artist-list/artist-list.component';
+import { ComposerListComponent } from './components/composer-list/composer-list.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { ArtistListComponent } from './components/artist-list/artist-list.compon
     BuildingListComponent,
     PaintingListComponent,
     ArtistListComponent,
+    ComposerListComponent,
 
 
   ],

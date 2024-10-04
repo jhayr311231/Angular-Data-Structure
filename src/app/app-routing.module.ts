@@ -39,7 +39,7 @@ import { AccessoryListComponent } from './components/accessory-list/accessory-li
 import { BuildingListComponent } from './components/building-list/building-list.component';
 import { PaintingListComponent } from './components/painting-list/painting-list.component';
 import { ArtistListComponent } from './components/artist-list/artist-list.component';
-
+import { ComposerListComponent } from './components/composer-list/composer-list.component';
 
 
 const routes: Routes = [
@@ -82,7 +82,7 @@ const routes: Routes = [
   { path: 'buildinglist', component:BuildingListComponent },
   { path: 'paintinglist', component:PaintingListComponent },
   { path: 'artistlist', component:ArtistListComponent },
-
+  { path: 'composerlist', component:ComposerListComponent },
 ];
 
 
