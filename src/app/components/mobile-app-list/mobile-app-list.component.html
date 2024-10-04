@@ -1,0 +1,32 @@
+<div>
+    <h2>Mobile App List</h2>
+
+    <!-- Input fields for adding new app -->
+    <input type="text" [(ngModel)]="newAppName" placeholder="Enter app name" />
+    <input type="text" [(ngModel)]="newAppCategory" placeholder="Enter app category" />
+    <input type="number" [(ngModel)]="newAppRating" placeholder="Enter app rating" min="0" max="5" step="0.1" />
+    <input type="text" [(ngModel)]="newAppDescription" placeholder="Enter app description" />
+    <button (click)="addApp()">Add App</button>
+
+    <!-- Search field -->
+    <input type="text" [(ngModel)]="searchQuery" placeholder="Search app" />
+
+    <!-- Display the list of apps -->
+    <ul>
+        <li *ngFor="let app of getFilteredApps(); let i = index">
+            {{ app.name }} - {{ app.category }} - Rating: {{ app.rating }} - {{ app.description }}
+            <button (click)="editApp(i)">Edit</button>
+            <button (click)="removeApp(i)">Remove</button>
+        </li>
+    </ul>
+
+    <!-- Edit section -->
+    <div *ngIf="editIndex !== null">
+        <h3>Edit App</h3>
+        <input type="text" [(ngModel)]="editedAppName" placeholder="Edit app name" />
+        <input type="text" [(ngModel)]="editedAppCategory" placeholder="Edit app category" />
+        <input type="number" [(ngModel)]="editedAppRating" placeholder="Edit app rating" min="0" max="5" step="0.1" />
+        <input type="text" [(ngModel)]="editedAppDescription" placeholder="Edit app description" />
+        <button (click)="saveEdit()">Save</button>
+    </div>
+</div>
