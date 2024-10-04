@@ -1,0 +1,30 @@
+<div>
+    <h2>Laptop List</h2>
+
+    <!-- Input fields for adding a new laptop -->
+    <input type="text" [(ngModel)]="newLaptopModel" placeholder="Enter laptop model" />
+    <input type="text" [(ngModel)]="newLaptopBrand" placeholder="Enter brand" />
+    <input type="text" [(ngModel)]="newLaptopSpecifications" placeholder="Enter specifications" />
+    <button (click)="addLaptop()">Add Laptop</button>
+
+    <!-- Search field -->
+    <input type="text" [(ngModel)]="searchQuery" placeholder="Search laptop" />
+
+    <!-- Display the list of laptops -->
+    <ul>
+        <li *ngFor="let laptop of getFilteredList(); let i = index">
+            {{ laptop.model }} ({{ laptop.brand }}) - Specs: {{ laptop.specifications }}
+            <button (click)="editLaptop(i)">Edit</button>
+            <button (click)="removeLaptop(i)">Remove</button>
+        </li>
+    </ul>
+
+    <!-- Edit section -->
+    <div *ngIf="editIndex !== null">
+        <h3>Edit Laptop</h3>
+        <input type="text" [(ngModel)]="editedLaptopModel" placeholder="Edit laptop model" />
+        <input type="text" [(ngModel)]="editedLaptopBrand" placeholder="Edit brand" />
+        <input type="text" [(ngModel)]="editedLaptopSpecifications" placeholder="Edit specifications" />
+        <button (click)="saveEdit()">Save</button>
+    </div>
+</div>
