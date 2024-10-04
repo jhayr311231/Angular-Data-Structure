@@ -1,0 +1,18 @@
+<div>
+    <h2>TV Show List</h2>
+
+    <input type="text" [(ngModel)]="newShow.title" placeholder="Enter TV Show Title" />
+    <input type="text" [(ngModel)]="newShow.genre" placeholder="Enter Genre" />
+    <input type="text" [(ngModel)]="newShow.imageUrl" placeholder="Enter Image URL" />
+    <button (click)="addShow()">Add TV Show</button>
+
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search TV Shows" />
+
+    <ul>
+        <li *ngFor="let show of getFilteredShows(); let i = index">
+            <img [src]="show.imageUrl" alt="{{ show.title }}" style="width: 50px; height: auto;" /> {{ show.title }} - {{ show.genre }}
+            <button (click)="editShow(i)">Edit</button>
+            <button (click)="removeShow(i)">Remove</button>
+        </li>
+    </ul>
+</div>
