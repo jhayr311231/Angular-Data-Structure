@@ -49,6 +49,7 @@ import { TourListComponent } from './components/tour-list/tour-list.component';
 import { EventListComponent } from './components/event-list/event-list.component';
 import { DeveloperToolsListComponent } from './components/developer-tools-list/developer-tools-list.component';
 import { FrameworkListComponent } from './components/framework-list/framework-list.component';
+import { LibraryListComponent } from './components/library-list/library-list.component';
 
 
 const routes: Routes = [
@@ -101,7 +102,7 @@ const routes: Routes = [
   { path: 'eventlist', component:EventListComponent },
   { path: 'developertoolslist', component:DeveloperToolsListComponent },
   { path: 'frameworklist', component:FrameworkListComponent },
-  
+  { path: 'librarylist', component:LibraryListComponent },
 
 ];
 

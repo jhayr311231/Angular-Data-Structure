@@ -1,0 +1,21 @@
+<div>
+    <h2>Library List</h2>
+
+    <!-- Search input -->
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search libraries" />
+
+    <!-- Input fields for adding a new library -->
+    <input type="text" [(ngModel)]="newLibraryName" placeholder="Enter library name" />
+    <input type="text" [(ngModel)]="newLibraryVersion" placeholder="Enter library version" />
+    <input type="text" [(ngModel)]="newLibraryDescription" placeholder="Enter library description" />
+    <button (click)="addLibrary()">Add Library</button>
+
+    <!-- Display the list of libraries -->
+    <ul>
+        <li *ngFor="let library of getFilteredLibraries(); let i = index">
+            {{ library.name }} - {{ library.version }} - {{ library.description }}
+            <button (click)="editLibrary(i)">Edit</button>
+            <button (click)="removeLibrary(i)">Remove</button>
+        </li>
+    </ul>
+</div>
