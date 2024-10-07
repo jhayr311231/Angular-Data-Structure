@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FruitListService } from '../../services/fruit-list.service'; // Import the service
 
 @Component({
   selector: 'app-fruit-list',
@@ -8,6 +9,10 @@ import { Component } from '@angular/core';
 export class FruitListComponent {
   fruits: string[] = []; // Array to hold the list of fruits
   newFruit: string = ''; // Variable to bind to the input field
+
+  constructor(private fruitListService: FruitListService) {
+    this.fruits = this.fruitListService.getFruitList(); // Fetch the initial list of fruits
+  }
 
   // Method to add a new fruit to the list
   addFruit() {
