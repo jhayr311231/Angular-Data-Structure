@@ -103,6 +103,7 @@ const routes: Routes = [
   { path: 'developertoolslist', component:DeveloperToolsListComponent },
   { path: 'frameworklist', component:FrameworkListComponent },
   { path: 'librarylist', component:LibraryListComponent },
+  { path: '**', redirectTo: '/librarylist' } // Optional: Wildcard route
 
 ];
 

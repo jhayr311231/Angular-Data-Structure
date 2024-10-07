@@ -1,25 +1,23 @@
 import { Component } from '@angular/core';
+import { StudentListService } from '../../services/student-list.service';
+
 
 @Component({
   selector: 'app-student-list',
   templateUrl: './student-list.component.html',
-  styleUrl: './student-list.component.css'
+  styleUrls: ['./student-list.component.css']
 })
 export class StudentListComponent {
-  students: string[] = ['Alice', 'Bob', 'Charlie']; // Initial list of students
   newStudent: string = ''; // Input field for new student
+  students: string[] = []; // List of students
+
+  constructor(private studentListService: StudentListService) {
+    this.students = this.studentListService.getStudentList(); // Fetch the initial list of students
+  }
 
   // Method to add a new student
   addStudent() {
-    if (this.newStudent.trim()) { // Check for empty input
-      this.students.push(this.newStudent); // Add new student to the list
-      this.newStudent = ''; // Clear the input field
-    }
+    this.studentListService.addStudent(this.newStudent); // Add new student via service
+    this.newStudent = ''; // Clear the input field
   }
-
-  // Method to fetch the list of students
-  getStudentList() {
-    return this.students; // Return the list of students
-  }
-
 }
