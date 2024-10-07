@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EmployeeListService } from '../../services/employee-list.service'; // Import the service
 
 @Component({
   selector: 'app-employee-list',
@@ -8,6 +9,10 @@ import { Component } from '@angular/core';
 export class EmployeeListComponent {
   employees: string[] = [];
   newEmployee: string = '';
+
+  constructor(private employeeListService: EmployeeListService) {
+    this.employees = this.employeeListService.getEmployeeList(); // Fetch the initial list of employees
+  }
 
   addEmployee() {
     if (this.newEmployee) {
