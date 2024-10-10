@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CourseListService } from '../../services/course-list.service'; // Import the service
 
 @Component({
   selector: 'app-course-list',
@@ -8,6 +9,10 @@ import { Component } from '@angular/core';
 export class CourseListComponent {
   courses: string[] = []; // Array to hold the list of courses
   newCourse: string = ''; // Variable to bind to the input field
+
+  constructor(private courseListService: CourseListService) {
+    this.courses = this.courseListService.getCourseList(); // Fetch the initial list of courses
+  }
 
   // Method to add a new course to the list
   addCourse() {
