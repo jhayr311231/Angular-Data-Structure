@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LectureListService } from '../../services/lecture-list.service';
 
 // Define the Lecture interface
 interface Lecture {
@@ -35,6 +36,8 @@ export class LectureListComponent {
  editedLectureTitle: string = '';
  editedLectureDate: string = '';
  editedLectureTime: string = '';
+
+ constructor(private lecturelistService: LectureListService) {}
 
  // Method to add a new lecture to the list
  addLecture() {
