@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ClassroomListService } from '../../services/classroom-list.service';
 
 @Component({
   selector: 'app-classroom-list',
@@ -26,6 +27,9 @@ editIndex: number | null = null;
 // Temporary properties to store the edited student values
 editedStudentName: string = '';
 editedStudentAge: number | null = null;
+
+constructor(private classroomListService: ClassroomListService) {}
+
 
 // Method to add a new student to the list
 addStudent() {
