@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SubjectListService } from '../../services/subject-list.service'; // Import the service
 
 interface Subject {
   name: string;
@@ -18,6 +19,11 @@ export class SubjectListComponent {
 
   newSubject: Subject = { name: '', code: '' };
   editIndex: number | null = null;
+
+  constructor(private subjectListService: SubjectListService) {
+    // Fetch the initial list of subjects from the service
+    this.subjects = this.subjectListService.getSubjectList();
+  }
 
   // Add or edit a subject
   addSubject() {
