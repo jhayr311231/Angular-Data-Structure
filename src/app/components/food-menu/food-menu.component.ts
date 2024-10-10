@@ -1,74 +1,57 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FoodMenuService } from '../../services/food-menu.service';
 
 @Component({
   selector: 'app-food-menu',
   templateUrl: './food-menu.component.html',
-  styleUrl: './food-menu.component.css'
+  styleUrls: ['./food-menu.component.css']
 })
-export class FoodMenuComponent {
-   // Properties to hold the new food item input values
-  newFoodName: string = '';
-  newFoodPrice: number | null = null;
+export class FoodMenuComponent implements OnInit {
+  // Array to store the food items
+  menu: { name: string; price: number; description: string }[] = [];
 
-  // List of food items in the menu
-  foodMenu: { name: string; price: number }[] = [
-    { name: 'Pizza', price: 250.00 },
-    { name: 'Burger', price: 90.00 },
-    { name: 'Pasta', price: 120.00 },
-  ];
-
-  // Property for search input
-  searchQuery: string = '';
-
-  // Property to hold the index of the food item being edited
+  // Model for a new food item entry
+  newFoodItem = { name: '', price: 0, description: '' };
   editIndex: number | null = null;
 
-  // Temporary properties to store the edited food item values
-  editedFoodName: string = '';
-  editedFoodPrice: number | null = null;
+  constructor(private foodMenuService: FoodMenuService) {}
 
-  // Method to add a new food item to the menu
-  addFood() {
-    if (this.newFoodName.trim() && this.newFoodPrice !== null) {
-      this.foodMenu.push({ name: this.newFoodName, price: this.newFoodPrice });
-      this.newFoodName = ''; // Reset input field
-      this.newFoodPrice = null; // Reset input field
-    }
+  // Lifecycle hook to initialize the menu
+  ngOnInit(): void {
+    this.menu = this.foodMenuService.getMenu(); // Initialize menu in ngOnInit
   }
 
-  // Method to get the filtered list of food items based on the search query
-  getFilteredMenu(): { name: string; price: number }[] {
-    if (this.searchQuery.trim()) {
-      return this.foodMenu.filter(food =>
-        food.name.toLowerCase().includes(this.searchQuery.toLowerCase())
-      );
+  // Add or edit a food item
+  addFoodItem() {
+    if (this.editIndex === null) {
+      this.foodMenuService.addFoodItem({ ...this.newFoodItem });
+    } else {
+      this.foodMenuService.updateFoodItem(this.editIndex, { ...this.newFoodItem });
+      this.editIndex = null; // Exit editing mode
     }
-    return this.foodMenu;
+    this.resetForm();
+    this.refreshMenu(); // Refresh the menu after adding or editing
   }
 
-  // Method to edit a food item
-  editFood(index: number) {
+  // Edit an existing food item
+  editFoodItem(index: number) {
+    this.newFoodItem = { ...this.menu[index] };
     this.editIndex = index;
-    this.editedFoodName = this.foodMenu[index].name;
-    this.editedFoodPrice = this.foodMenu[index].price;
   }
 
-  // Method to save the edited food item
-  saveEdit() {
-    if (this.editIndex !== null) {
-      this.foodMenu[this.editIndex] = {
-        name: this.editedFoodName,
-        price: this.editedFoodPrice!
-      };
-      this.editIndex = null; // Exit edit mode
-      this.editedFoodName = ''; // Reset edit input
-      this.editedFoodPrice = null; // Reset edit input
-    }
+  // Remove a food item from the list
+  removeFoodItem(index: number) {
+    this.foodMenuService.removeFoodItem(index);
+    this.refreshMenu(); // Refresh the menu after removing
   }
 
-  // Method to remove a food item from the menu
-  removeFood(index: number) {
-    this.foodMenu.splice(index, 1);
+  // Reset the form after adding or editing
+  resetForm() {
+    this.newFoodItem = { name: '', price: 0, description: '' };
   }
 
+  // Method to refresh the menu
+  refreshMenu() {
+    this.menu = this.foodMenuService.getMenu(); // Update the menu list
+  }
 }
