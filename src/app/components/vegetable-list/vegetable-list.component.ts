@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { VegetableListService } from '../../services/vegetable-list.service'; // Import the service
 
 interface Vegetable {
   name: string;
@@ -11,42 +12,24 @@ interface Vegetable {
   styleUrl: './vegetable-list.component.css'
 })
 export class VegetableListComponent {
-  // Array to store vegetables
-  vegetables: Vegetable[] = [
-    { name: 'Carrot', price: 180},
-    { name: 'Broccoli', price: 250 },
-    { name: 'Spinach', price: 160 }
-  ];
+  vegetables: string[] = []; // Array to hold the list of vegetables
+  newVegetable: string = ''; // Variable to bind to the input field
 
-  // Model for new vegetable entry
-  newVegetable: Vegetable = { name: '', price: 0 };
-  editIndex: number | null = null;
+  constructor(private vegetableListService: VegetableListService) {
+    this.vegetables = this.vegetableListService.getVegetableList(); // Fetch the initial list of vegetables
+  }
 
-  // Add or edit a vegetable
+  // Method to add a new vegetable to the list
   addVegetable() {
-    if (this.editIndex === null) {
-      this.vegetables.push({ ...this.newVegetable });
-    } else {
-      this.vegetables[this.editIndex] = { ...this.newVegetable };
-      this.editIndex = null;
+    if (this.newVegetable.trim()) { // Check if the input is not empty
+      this.vegetables.push(this.newVegetable.trim());
+      this.newVegetable = ''; // Clear the input field after adding
     }
-    this.resetForm();
   }
 
-  // Edit an existing vegetable
-  editVegetable(index: number) {
-    this.newVegetable = { ...this.vegetables[index] };
-    this.editIndex = index;
-  }
-
-  // Remove a vegetable from the list
+  // Method to remove a vegetable from the list
   removeVegetable(index: number) {
-    this.vegetables.splice(index, 1);
-  }
-
-  // Reset the form after adding or editing
-  resetForm() {
-    this.newVegetable = { name: '', price: 0 };
+    this.vegetables.splice(index, 1); // Remove the vegetable at the specified index
   }
 
 }
