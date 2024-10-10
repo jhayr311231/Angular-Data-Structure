@@ -1,19 +1,25 @@
-<select [(ngModel)]="selectedContinent" (change)="filterByContinent()">
+<div>
+    <h2>Country List</h2>
+
+    <select [(ngModel)]="selectedContinent" (change)="filterByContinent()">
     <option value="">All Continents</option>
     <option value="North America">North America</option>
     <option value="South America">South America</option>
     <!-- Add more continents as needed -->
   </select>
 
-<ul>
-    <li *ngFor="let country of filterByContinent(); let i = index">
-        {{ country.name }} - {{ country.continent }}
-        <button (click)="editCountry(i)">Edit</button>
-        <button (click)="removeCountry(i)">Remove</button>
-    </li>
-</ul>
+    <ul>
+        <li *ngFor="let country of filterByContinent(); let i = index">
+            {{ country.name }} - {{ country.continent }}
+            <button (click)="editCountry(i)">Edit</button>
+            <button (click)="removeCountry(i)">Remove</button>
+        </li>
+    </ul>
 
-<!-- Form to add/edit country -->
-<input [(ngModel)]="newCountry.name" placeholder="Country Name" />
-<input [(ngModel)]="newCountry.continent" placeholder="Continent" />
-<button (click)="saveCountry()">{{ editIndex === null ? 'Add Country' : 'Update Country' }}</button>
+    <!-- Form to add/edit country -->
+    <input [(ngModel)]="newCountry.name" placeholder="Country Name" />
+    <input [(ngModel)]="newCountry.continent" placeholder="Continent" />
+
+    <button (click)="saveCountry()">{{ editIndex === null ? 'Add Country' : 'Update Country' }}</button>
+
+</div>

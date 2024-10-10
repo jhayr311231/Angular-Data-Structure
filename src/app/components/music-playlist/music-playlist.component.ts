@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MusicPlaylistService } from '../../services/music-playlist.service'; // Import the service
 
 @Component({
   selector: 'app-music-playlist',
@@ -26,6 +27,8 @@ editIndex: number | null = null;
 // Temporary properties to store the edited song values
 editedSongTitle: string = '';
 editedSongArtist: string = '';
+
+constructor(private musicPlaylistService: MusicPlaylistService) {}
 
 // Method to add a new song to the playlist
 addSong() {
