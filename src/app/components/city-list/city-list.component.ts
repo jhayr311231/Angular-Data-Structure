@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CityListService } from '../../services/city-list.service'; // Import the service
 
 @Component({
   selector: 'app-city-list',
@@ -8,6 +9,10 @@ import { Component } from '@angular/core';
 export class CityListComponent {
   cities: string[] = []; // Array to hold the list of cities
   newCity: string = ''; // Variable to bind to the input field
+
+  constructor(private cityListService: CityListService) {
+    this.cities = this.cityListService.getCityList(); // Fetch the initial list of cities
+  }
 
   // Method to add a new city to the list
   addCity() {
