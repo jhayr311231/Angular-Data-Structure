@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { ProductListService } from '../../services/product-list.service'; // Import the service
 
-// Define the Product interface here (this is crucial to avoid the error)
+// Define the Product interface directly in the component
 interface Product {
   name: string;
   price: number;
@@ -10,16 +11,18 @@ interface Product {
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrl: './product-list.component.css'
+  styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
-  products: Product[] = [
-    { name: 'Laptop', price: 30000, imageUrl: 'https://i.pinimg.com/564x/78/bf/a8/78bfa893270a0b531705b1c56f25674d.jpg' },
-    { name: 'Smartphone', price: 25000, imageUrl: 'https://i.pinimg.com/564x/d5/1b/0d/d51b0d8826063f245dc38e9ff6c5c263.jpg' }
-  ]; // Initial product list
+  products: Product[] = []; // Array to store products
 
   newProduct: Product = { name: '', price: 0, imageUrl: '' }; // New product object
   editIndex: number | null = null; // Index for editing mode
+
+  constructor(private productListService: ProductListService) {
+    // Fetch the initial list of products from the service
+    this.products = this.productListService.getProductList();
+  }
 
   // Add or edit product
   addProduct() {
