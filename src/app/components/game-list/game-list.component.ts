@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GameListService } from '../../services/game-list.service'; // Import the service
 
 @Component({
   selector: 'app-game-list',
@@ -20,6 +21,9 @@ export class GameListComponent {
 
    // Temporary property to store the edited game value
    editedGame: string = '';
+
+   constructor(private gameListService: GameListService) {}
+
 
    // Method to add a new game to the list
    addGame() {
