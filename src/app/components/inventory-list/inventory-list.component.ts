@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { InventoryListService } from '../../services/inventory-list.service';
+
 
 // Define the InventoryItem interface
 interface InventoryItem {
@@ -35,6 +37,8 @@ export class InventoryListComponent {
  editedItemName: string = '';
  editedItemQuantity: number | null = null;
  editedItemPrice: number | null = null;
+
+ constructor(private inventoryListService: InventoryListService) {}
 
  // Method to add a new item to the inventory
  addItem() {
