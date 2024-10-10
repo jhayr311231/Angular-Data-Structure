@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GroceryListService } from '../../services/grocery-list.service';
 
 @Component({
   selector: 'app-grocery-list',
@@ -26,6 +27,12 @@ editIndex: number | null = null;
 // Temporary properties to store the edited grocery item values
 editedItemName: string = '';
 editedItemQuantity: number | null = null;
+
+constructor(private groceryListService: GroceryListService) {}
+
+ngOnInit(): void {
+  this.groceryList = this.groceryListService.getGroceryList();
+}
 
 // Method to add a new grocery item to the list
 addItem() {
