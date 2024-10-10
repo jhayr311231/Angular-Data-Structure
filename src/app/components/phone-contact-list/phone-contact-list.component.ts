@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { PhoneContactListService } from '../../services/phone-contact-list.service'; // Import the service
 @Component({
   selector: 'app-phone-contact-list',
   templateUrl: './phone-contact-list.component.html',
@@ -26,6 +26,8 @@ export class PhoneContactListComponent {
   // Temporary properties to store the edited contact values
   editedContactName: string = '';
   editedContactNumber: string = '';
+
+  constructor(private phoneContactListService: PhoneContactListService) {}
 
   // Method to add new contact to the list
   addContact() {
