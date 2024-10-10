@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MovieListService } from '../../services/movie-list.service'; // Import the service
 
 @Component({
   selector: 'app-movie-list',
@@ -8,6 +9,10 @@ import { Component } from '@angular/core';
 export class MovieListComponent {
   movies: string[] = []; // Array to hold the list of movies
   newMovie: string = ''; // Variable to bind to the input field
+
+  constructor(private movieListService: MovieListService) {
+    this.movies = this.movieListService.getMovieList(); // Fetch the initial list of movies
+  }
 
   // Method to add a new movie to the list
   addMovie() {
