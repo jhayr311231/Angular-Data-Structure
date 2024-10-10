@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SoftwareListService } from '../../services/software-list.service'; // Import the service
 
 @Component({
   selector: 'app-software-list',
@@ -29,6 +30,8 @@ editIndex: number | null = null;
 
 // Temporary property to store the edited software value
 editedSoftware: string = '';
+
+constructor(private softwareListService: SoftwareListService) {}
 
 // Method to add new software to the list
 addSoftware() {
