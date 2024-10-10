@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ToolListService } from '../../services/tool-list.service'; // Import the service
+
 
 interface Tool {
   name: string;
@@ -23,6 +25,11 @@ tools: Tool[] = [
 // Model for new tool entry
 newTool: Tool = { name: '', type: '', quantity: 0 };
 editIndex: number | null = null;
+
+ // Inject the ToolListService
+ constructor(private toolListService: ToolListService) {
+  this.tools = this.toolListService.getToolList(); // Fetch the initial list of tools
+}
 
 // Add or edit a tool
 addTool() {
@@ -50,5 +57,8 @@ removeTool(index: number) {
 resetForm() {
   this.newTool = { name: '', type: '', quantity: 0 };
 }
-
+ // Method to update the local tools array from the service
+ private updateToolList() {
+  this.tools = this.toolListService.getToolList(); // Refresh the tools list from the service
+}
 }
