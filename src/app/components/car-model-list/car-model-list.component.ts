@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CarModelListService } from '../../services/car-model-list.service'; // Import the service
 
 @Component({
   selector: 'app-car-model-list',
@@ -10,6 +11,10 @@ export class CarModelListComponent {
   newCarModel: string = ''; // Variable to bind to the input field for adding a new car model
   editIndex: number | null = null; // Index of the car being edited, null means no editing mode
   searchQuery: string = ''; // Filter query for searching car models
+
+  constructor(private carModelListService: CarModelListService) {
+    this.carModels = this.carModelListService.getCarModelList(); // Fetch the initial list of car models
+  }
 
   // Add a new car model
   addCarModel() {
@@ -39,7 +44,7 @@ export class CarModelListComponent {
 
   // Get the filtered list of car models based on the search query
   getFilteredCarModels() {
-    return this.carModels.filter(car => 
+    return this.carModels.filter(car =>
       car.toLowerCase().includes(this.searchQuery.toLowerCase()));
   }
 
