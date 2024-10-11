@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PaintingListService } from '../../services/painting-list.service';
 
 @Component({
   selector: 'app-painting-list',
@@ -20,6 +21,11 @@ export class PaintingListComponent {
 
   searchTerm = '';
   editingIndex: number | null = null;
+
+  constructor(private paintingListService: PaintingListService) {
+    // Fetch the painting list from the service
+    this.paintingList = this.paintingListService.getPaintingList();
+  }
 
   addPainting() {
     if (this.editingIndex !== null) {
@@ -53,5 +59,4 @@ export class PaintingListComponent {
   resetForm() {
     this.newPainting = { name: '', artist: '', year: 0, imageUrl: '' };
   }
-
 }
