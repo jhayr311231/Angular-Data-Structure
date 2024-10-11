@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { VideoListService } from '../../services/video-list.service';
 
 // Define the Video interface
 interface Video {
@@ -19,26 +20,30 @@ export class VideoListComponent {
    newVideoGenre: string = '';
    newVideoRating: number = 0;
    newVideoDescription: string = '';
- 
+
    // List of videos
    videoList: Video[] = [
      { title: 'Inception', genre: 'Sci-Fi', rating: 4.8, description: 'A mind-bending thriller' },
      { title: 'The Godfather', genre: 'Crime', rating: 4.9, description: 'A story about a crime family' },
      { title: 'Toy Story', genre: 'Animation', rating: 4.7, description: 'A tale of toys coming to life' },
    ];
- 
+
    // Property for search input
    searchQuery: string = '';
- 
+
    // Property to hold the index of the video item being edited
    editIndex: number | null = null;
- 
+
    // Temporary properties to store the edited video values
    editedVideoTitle: string = '';
    editedVideoGenre: string = '';
    editedVideoRating: number = 0;
    editedVideoDescription: string = '';
- 
+
+   constructor(private videoListService: VideoListService) {
+    this.videoList = this.videoListService.getVideoList();
+  }
+
    // Method to add a new video to the list
    addVideo() {
      if (this.newVideoTitle.trim() && this.newVideoGenre.trim() &&
@@ -56,7 +61,7 @@ export class VideoListComponent {
        this.newVideoDescription = '';
      }
    }
- 
+
    // Method to get the filtered list of videos based on the search query
    getFilteredVideos(): Video[] {
      if (this.searchQuery.trim()) {
@@ -66,7 +71,7 @@ export class VideoListComponent {
      }
      return this.videoList;
    }
- 
+
    // Method to edit a video item
    editVideo(index: number) {
      this.editIndex = index;
@@ -75,7 +80,7 @@ export class VideoListComponent {
      this.editedVideoRating = this.videoList[index].rating;
      this.editedVideoDescription = this.videoList[index].description;
    }
- 
+
    // Method to save the edited video
    saveEdit() {
      if (this.editIndex !== null) {
@@ -93,7 +98,7 @@ export class VideoListComponent {
        this.editedVideoDescription = '';
      }
    }
- 
+
    // Method to remove a video from the list
    removeVideo(index: number) {
      this.videoList.splice(index, 1);
