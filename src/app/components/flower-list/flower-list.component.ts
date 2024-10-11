@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FlowerListService } from '../../services/flower-list.service';
 
 
 // Define the Flower interface
@@ -17,7 +18,7 @@ export class FlowerListComponent {
    // Properties for new flower input values
    newFlowerName: string = '';
    newFlowerColor: string = '';
-   newFlowerQuantity: number = 1;
+   newFlowerQuantity: number = 0;
 
    // List of flowers
    flowerList: Flower[] = [
@@ -37,6 +38,10 @@ export class FlowerListComponent {
    editedFlowerColor: string = '';
    editedFlowerQuantity: number = 0;
 
+   constructor(private flowerService: FlowerListService) {
+    this.flowerList = this.flowerService.getFlowerItems(); // Load flowers from service
+  }
+
    // Method to add a new flower to the list
    addFlower() {
      if (this.newFlowerName.trim() && this.newFlowerColor.trim() && this.newFlowerQuantity > 0) {
@@ -47,7 +52,7 @@ export class FlowerListComponent {
        });
        this.newFlowerName = ''; // Reset input fields
        this.newFlowerColor = '';
-       this.newFlowerQuantity = 1;
+       this.newFlowerQuantity = 0;
      }
    }
 
