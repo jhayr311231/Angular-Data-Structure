@@ -1,19 +1,21 @@
 <div>
     <h2>Exercise List</h2>
-
-    <!-- Input field for adding/editing an exercise -->
-    <input type="text" [(ngModel)]="newExercise" placeholder="Enter exercise name" />
-    <button (click)="addExercise()">{{ editIndex === null ? 'Add Exercise' : 'Update Exercise' }}</button>
-
-    <!-- Input field for searching exercises -->
-    <input type="text" [(ngModel)]="searchExercise" placeholder="Search exercise" />
-
-    <!-- Display the list of exercises -->
-    <ul>
-        <li *ngFor="let exercise of getFilteredExercises(); let i = index">
-            {{ exercise }}
-            <button (click)="editExercise(i)">Edit</button>
-            <button (click)="removeExercise(i)">Remove</button>
-        </li>
-    </ul>
-</div>
+    <input [(ngModel)]="newExercise.name" placeholder="Exercise Name" />
+    <input [(ngModel)]="newExercise.description" placeholder="Description" />
+    <input type="number" [(ngModel)]="newExercise.duration" placeholder="Duration (minutes)" />
+    <button (click)="addExercise()">{{ editIndex !== null ? 'Update' : 'Add' }}</button>
+  </div>
+  
+  <div>
+    <h3>Search Exercises</h3>
+    <input [(ngModel)]="searchExercise" placeholder="Search by exercise name" />
+  </div>
+  
+  <ul>
+    <li *ngFor="let exercise of getFilteredExercises(); let i = index">
+      <strong>{{ exercise.name }}</strong> - {{ exercise.description }} (Duration: {{ exercise.duration }} minutes)
+      <button (click)="editExercise(i)">Edit</button>
+      <button (click)="removeExercise(i)">Remove</button>
+    </li>
+  </ul>
+  
