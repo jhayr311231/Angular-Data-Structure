@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { StationeryListService } from '../../services/stationery-list.service';; // Import the service
 
 // Define the Stationery interface
 interface Stationery {
@@ -32,6 +33,10 @@ editIndex: number | null = null;
 // Temporary properties to store the edited stationery values
 editedStationeryName: string = '';
 editedStationeryQuantity: number = 0;
+
+constructor(private stationeryListService: StationeryListService) {
+  this.stationeryList = this.stationeryListService.getStationeryItems(); // Load items from service
+}
 
 // Method to add a new stationery item to the list
 addStationery() {
