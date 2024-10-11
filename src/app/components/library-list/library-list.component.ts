@@ -1,4 +1,13 @@
 import { Component } from '@angular/core';
+import { LibraryListService } from '../../services/library-list.service';
+
+export interface Library {
+  name: string;
+  version: string;
+  description: string;
+  category: string; // e.g., JavaScript, CSS, Utility, etc.
+}
+
 
 @Component({
   selector: 'app-library-list',
@@ -11,6 +20,11 @@ export class LibraryListComponent {
   newLibraryVersion: string = ''; // Variable to hold new library version input
   newLibraryDescription: string = ''; // Variable to hold new library description input
   searchTerm: string = ''; // Variable to hold search term
+
+  constructor(private libraryListService: LibraryListService) {
+    // Initialize libraries from the service
+    this.libraries = this.libraryListService.getLibraries();
+  }
 
   // Method to add a new library
   addLibrary() {
@@ -47,9 +61,9 @@ export class LibraryListComponent {
 
   // Method to get filtered library list based on search term
   getFilteredLibraries() {
-    return this.libraries.filter(library => 
-      library.name.toLowerCase().includes(this.searchTerm.toLowerCase()) || 
-      library.version.toLowerCase().includes(this.searchTerm.toLowerCase()) || 
+    return this.libraries.filter(library =>
+      library.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      library.version.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
       library.description.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
