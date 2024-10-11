@@ -1,19 +1,20 @@
 <div>
     <h2>Podcast List</h2>
-
-    <!-- Input field for adding/editing a podcast -->
-    <input type="text" [(ngModel)]="newPodcast" placeholder="Enter podcast episode" />
-    <button (click)="addPodcast()">{{ editIndex === null ? 'Add Podcast' : 'Update Podcast' }}</button>
-
-    <!-- Input field for searching podcasts -->
-    <input type="text" [(ngModel)]="searchPodcast" placeholder="Search podcast" />
-
-    <!-- Display the list of podcasts -->
-    <ul>
-        <li *ngFor="let podcast of getFilteredPodcasts(); let i = index">
-            {{ podcast }}
-            <button (click)="editPodcast(i)">Edit</button>
-            <button (click)="removePodcast(i)">Remove</button>
-        </li>
-    </ul>
+    <input [(ngModel)]="newPodcast.title" placeholder="Podcast Title" />
+    <input [(ngModel)]="newPodcast.host" placeholder="Host" />
+    <input [(ngModel)]="newPodcast.description" placeholder="Description" />
+    <button (click)="addPodcast()">{{ editIndex !== null ? 'Update' : 'Add' }}</button>
 </div>
+
+<div>
+    <h3>Search Podcasts</h3>
+    <input [(ngModel)]="searchPodcast" placeholder="Search by podcast title" />
+</div>
+
+<ul>
+    <li *ngFor="let podcast of getFilteredPodcasts(); let i = index">
+        <strong>{{ podcast.title }}</strong> (Hosted by: {{ podcast.host }}) - {{ podcast.description }}
+        <button (click)="editPodcast(i)">Edit</button>
+        <button (click)="removePodcast(i)">Remove</button>
+    </li>
+</ul>
