@@ -1,19 +1,17 @@
 <div>
     <h2>Developer Tools List</h2>
-
-    <!-- Search input -->
-    <input type="text" [(ngModel)]="searchTerm" placeholder="Search tools" />
-
-    <!-- Input fields for adding a new tool -->
-    <input type="text" [(ngModel)]="newToolName" placeholder="Enter tool name" />
-    <input type="text" [(ngModel)]="newToolVersion" placeholder="Enter tool version" />
-    <input type="text" [(ngModel)]="newToolDescription" placeholder="Enter tool description" />
+    <input [(ngModel)]="newTool.name" placeholder="Tool Name" />
+    <input [(ngModel)]="newTool.version" placeholder="Version" />
+    <input [(ngModel)]="newTool.description" placeholder="Description" />
+    <input [(ngModel)]="newTool.category" placeholder="Category" />
     <button (click)="addTool()">Add Tool</button>
+</div>
 
-    <!-- Display the list of tools -->
+<div>
+    <input [(ngModel)]="searchTerm" placeholder="Search Tools" />
     <ul>
         <li *ngFor="let tool of getFilteredTools(); let i = index">
-            {{ tool.name }} - {{ tool.version }} - {{ tool.description }}
+            {{ tool.name }} - {{ tool.version }} - {{ tool.description }} - {{ tool.category }}
             <button (click)="editTool(i)">Edit</button>
             <button (click)="removeTool(i)">Remove</button>
         </li>

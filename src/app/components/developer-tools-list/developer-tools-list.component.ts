@@ -1,57 +1,69 @@
 import { Component } from '@angular/core';
+import { DeveloperToolsListService } from '../../services/developer-tools-list.service'; // Make sure to import the interface
 
+export interface DeveloperTool {
+  name: string;
+  version: string;
+  description: string;
+  category: string; // e.g., IDE, version control, etc.
+}
 @Component({
   selector: 'app-developer-tools-list',
   templateUrl: './developer-tools-list.component.html',
-  styleUrl: './developer-tools-list.component.css'
+  styleUrls: ['./developer-tools-list.component.css']
 })
 export class DeveloperToolsListComponent {
-  tools: { name: string; version: string; description: string }[] = []; // Array to hold tool details
-  newToolName: string = ''; // Variable to hold new tool name input
-  newToolVersion: string = ''; // Variable to hold new tool version input
-  newToolDescription: string = ''; // Variable to hold new tool description input
+  tools: DeveloperTool[] = []; // Array to hold tool details
+  newTool: DeveloperTool = { name: '', version: '', description: '', category: '' }; // Updated to include category
   searchTerm: string = ''; // Variable to hold search term
 
-  // Method to add a new tool
-  addTool() {
-    if (this.newToolName.trim() !== '' && this.newToolVersion.trim() !== '' && this.newToolDescription.trim() !== '') {
-      this.tools.push({
-        name: this.newToolName.trim(),
-        version: this.newToolVersion.trim(),
-        description: this.newToolDescription.trim(),
-      });
-      this.newToolName = ''; // Clear input field
-      this.newToolVersion = ''; // Clear input field
-      this.newToolDescription = ''; // Clear input field
+  constructor(private developerToolsListService: DeveloperToolsListService) {
+    this.tools = this.developerToolsListService.getDeveloperTools(); // Load initial tools
+  }
+
+   // Method to add a new tool
+   addTool() {
+    if (this.newTool.name.trim() && this.newTool.version.trim() && this.newTool.description.trim() && this.newTool.category.trim()) {
+      this.developerToolsListService.addDeveloperTool({ ...this.newTool }); // Add new tool
+      this.resetNewTool(); // Clear input fields
     }
+  }
+
+  // Method to reset new tool input
+  resetNewTool() {
+    this.newTool = { name: '', version: '', description: '', category: '' }; // Reset all fields
   }
 
   // Method to remove a tool by index
   removeTool(index: number) {
-    this.tools.splice(index, 1);
+    this.developerToolsListService.removeDeveloperTool(index); // Remove tool from service
   }
 
   // Method to edit a tool
   editTool(index: number) {
-    const updatedName = prompt('Edit tool name:', this.tools[index].name);
-    const updatedVersion = prompt('Edit tool version:', this.tools[index].version);
-    const updatedDescription = prompt('Edit tool description:', this.tools[index].description);
-    if (updatedName !== null && updatedVersion !== null && updatedDescription !== null) {
+    const updatedTool = this.tools[index];
+    const updatedName = prompt('Edit tool name:', updatedTool.name);
+    const updatedVersion = prompt('Edit tool version:', updatedTool.version);
+    const updatedDescription = prompt('Edit tool description:', updatedTool.description);
+    const updatedCategory = prompt('Edit tool category:', updatedTool.category);
+
+    if (updatedName && updatedVersion && updatedDescription && updatedCategory) {
       this.tools[index] = {
         name: updatedName,
         version: updatedVersion,
         description: updatedDescription,
+        category: updatedCategory,
       };
     }
   }
 
   // Method to get filtered tool list based on search term
   getFilteredTools() {
-    return this.tools.filter(tool => 
-      tool.name.toLowerCase().includes(this.searchTerm.toLowerCase()) || 
-      tool.version.toLowerCase().includes(this.searchTerm.toLowerCase()) || 
-      tool.description.toLowerCase().includes(this.searchTerm.toLowerCase())
+    return this.tools.filter(tool =>
+      tool.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      tool.version.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      tool.description.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      tool.category.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
-
 }
