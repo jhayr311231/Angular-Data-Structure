@@ -1,20 +1,18 @@
 <div>
     <h2>Tour List</h2>
 
-    <!-- Search input -->
-    <input type="text" [(ngModel)]="searchTerm" placeholder="Search tours" />
+    <input [(ngModel)]="searchTerm" placeholder="Search Tours" />
 
-    <!-- Input fields for adding a new tour -->
-    <input type="text" [(ngModel)]="newTourDate" placeholder="Enter tour date" />
-    <input type="text" [(ngModel)]="newTourLocation" placeholder="Enter tour location" />
-    <button (click)="addTour()">Add Tour</button>
+    <div *ngFor="let tour of getFilteredTours(); let i = index">
+        <strong>{{ tour.name }}</strong> - Destination: {{ tour.destination }} (Duration: {{ tour.duration }} days)
+        <button (click)="editTour(i)">Edit</button>
+        <button (click)="removeTour(i)">Remove</button>
+    </div>
 
-    <!-- Display the list of tours -->
-    <ul>
-        <li *ngFor="let tour of getFilteredTours(); let i = index">
-            {{ tour.date }} - {{ tour.location }}
-            <button (click)="editTour(i)">Edit</button>
-            <button (click)="removeTour(i)">Remove</button>
-        </li>
-    </ul>
+    <h3>{{ editIndex !== null ? 'Edit' : 'Add' }} Tour</h3>
+    <input [(ngModel)]="newTour.name" placeholder="Tour Name" />
+    <input [(ngModel)]="newTour.destination" placeholder="Destination" />
+    <input [(ngModel)]="newTour.duration" type="number" placeholder="Duration (days)" />
+    <button (click)="addTour()">{{ editIndex !== null ? 'Update' : 'Add' }}</button>
 </div>
+

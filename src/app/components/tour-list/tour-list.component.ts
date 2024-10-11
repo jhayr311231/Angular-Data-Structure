@@ -1,45 +1,56 @@
 import { Component } from '@angular/core';
+import { TourListService } from '../../services/tour-list.service';
+
+interface Tour {
+  name: string;
+  destination: string;
+  duration: number; // Duration in days
+}
 
 @Component({
   selector: 'app-tour-list',
   templateUrl: './tour-list.component.html',
-  styleUrl: './tour-list.component.css'
+  styleUrls: ['./tour-list.component.css']
 })
 export class TourListComponent {
-  tours: { date: string; location: string }[] = []; // Array to hold tour dates and locations
-  newTourDate: string = ''; // Variable to hold new tour date input
-  newTourLocation: string = ''; // Variable to hold new tour location input
-  searchTerm: string = ''; // Variable to hold search term
+  newTour: Tour = { name: '', destination: '', duration: 0 };
+  searchTerm: string = '';
+  editIndex: number | null = null;
 
-  // Method to add a new tour date and location
-  addTour() {
-    if (this.newTourDate.trim() !== '' && this.newTourLocation.trim() !== '') {
-      this.tours.push({ date: this.newTourDate.trim(), location: this.newTourLocation.trim() });
-      this.newTourDate = ''; // Clear input field
-      this.newTourLocation = ''; // Clear input field
+  constructor(private tourListService: TourListService) {}
+
+  get tours(): Tour[] {
+    return this.tourListService.getTours();
+  }
+
+  getFilteredTours(): Tour[] {
+    if (!this.searchTerm) {
+      return this.tours;
     }
-  }
-
-  // Method to remove a tour by index
-  removeTour(index: number) {
-    this.tours.splice(index, 1);
-  }
-
-  // Method to edit a tour date and location
-  editTour(index: number) {
-    const updatedDate = prompt('Edit tour date:', this.tours[index].date);
-    const updatedLocation = prompt('Edit tour location:', this.tours[index].location);
-    if (updatedDate !== null && updatedLocation !== null) {
-      this.tours[index] = { date: updatedDate, location: updatedLocation };
-    }
-  }
-
-  // Method to get filtered tour list based on search term
-  getFilteredTours() {
-    return this.tours.filter(tour => 
-      tour.date.toLowerCase().includes(this.searchTerm.toLowerCase()) || 
-      tour.location.toLowerCase().includes(this.searchTerm.toLowerCase())
+    return this.tours.filter(tour =>
+      tour.name.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
 
+  addTour() {
+    if (this.newTour.name.trim() !== '' && this.newTour.duration > 0) {
+      if (this.editIndex !== null) {
+        this.tourListService.editTour(this.editIndex, this.newTour.name, this.newTour.destination, this.newTour.duration);
+        this.editIndex = null;
+      } else {
+        this.tourListService.addTour(this.newTour.name, this.newTour.destination, this.newTour.duration);
+      }
+      this.newTour = { name: '', destination: '', duration: 0 };
+    }
+  }
+
+  editTour(index: number) {
+    const tour = this.tours[index];
+    this.newTour = { ...tour };
+    this.editIndex = index;
+  }
+
+  removeTour(index: number) {
+    this.tourListService.removeTour(index);
+  }
 }
