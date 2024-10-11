@@ -1,4 +1,12 @@
 import { Component } from '@angular/core';
+import { ComposerListService } from '../../services/composer-list.service';
+
+// Define the Composer interface
+interface Composer {
+  name: string;
+  year: number;
+  masterpiece: string;
+}
 
 @Component({
   selector: 'app-composer-list',
@@ -6,39 +14,51 @@ import { Component } from '@angular/core';
   styleUrl: './composer-list.component.css'
 })
 export class ComposerListComponent {
-  newComposer: string = '';
-  searchComposer: string = '';
-  composers: string[] = ['Ludwig van Beethoven', 'Wolfgang Amadeus Mozart', 'Johann Sebastian Bach', 'Frédéric Chopin', 'Pyotr Ilyich Tchaikovsky'];
-  editIndex: number | null = null;
+    newComposer: Composer = { name: '', year: 0, masterpiece: '' };
+    searchComposer: string = '';
+    composers: Composer[] = [];
+    editIndex: number | null = null;
 
-  getFilteredComposers(): string[] {
-    if (!this.searchComposer) {
-      return this.composers;
+    constructor(private composerListService: ComposerListService) {
+      // Fetch the initial composer list from the service
+      this.composers = this.composerListService.getComposerList();
     }
-    return this.composers.filter(composer =>
-      composer.toLowerCase().includes(this.searchComposer.toLowerCase())
-    );
-  }
 
-  addComposer() {
-    if (this.newComposer.trim() !== '') {
-      if (this.editIndex !== null) {
-        this.composers[this.editIndex] = this.newComposer.trim();
-        this.editIndex = null;
-      } else {
-        this.composers.push(this.newComposer.trim());
+    getFilteredComposers(): Composer[] {
+      if (!this.searchComposer) {
+        return this.composers;
       }
-      this.newComposer = '';
+      return this.composers.filter(composer =>
+        composer.name.toLowerCase().includes(this.searchComposer.toLowerCase())
+      );
     }
-  }
 
-  editComposer(index: number) {
-    this.newComposer = this.composers[index];
-    this.editIndex = index;
-  }
+    addComposer() {
+      if (this.newComposer.name.trim() !== '' && this.newComposer.year > 0 && this.newComposer.masterpiece.trim() !== '') {
+        if (this.editIndex !== null) {
+          this.composers[this.editIndex] = { ...this.newComposer };
+          this.editIndex = null;
+        } else {
+          this.composers.push({ ...this.newComposer });
+        }
+        this.resetForm();
+        // Update the composer list in the service
+        this.composerListService.updateComposerList(this.composers);
+      }
+    }
 
-  removeComposer(index: number) {
-    this.composers.splice(index, 1);
-  }
+    editComposer(index: number) {
+      this.newComposer = { ...this.composers[index] };
+      this.editIndex = index;
+    }
 
+    removeComposer(index: number) {
+      this.composers.splice(index, 1);
+      // Update the composer list in the service
+      this.composerListService.updateComposerList(this.composers);
+    }
+
+    resetForm() {
+      this.newComposer = { name: '', year: 0, masterpiece: '' };
+    }
 }
