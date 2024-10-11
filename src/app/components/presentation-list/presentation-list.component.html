@@ -1,19 +1,17 @@
 <div>
     <h2>Presentation List</h2>
 
-    <!-- Search input -->
-    <input type="text" [(ngModel)]="searchTerm" placeholder="Search presentations" />
+    <input [(ngModel)]="searchTerm" placeholder="Search Presentations" />
 
-    <!-- Input field for adding a new presentation -->
-    <input type="text" [(ngModel)]="newPresentation" placeholder="Enter presentation topic" />
-    <button (click)="addPresentation()">Add Presentation</button>
+    <div *ngFor="let presentation of getFilteredPresentations(); let i = index">
+        <strong>{{ presentation.title }}</strong> - {{ presentation.date }} ({{ presentation.duration }} minutes)
+        <button (click)="editPresentation(i)">Edit</button>
+        <button (click)="removePresentation(i)">Remove</button>
+    </div>
 
-    <!-- Display the list of presentations -->
-    <ul>
-        <li *ngFor="let presentation of getFilteredPresentations(); let i = index">
-            {{ presentation }}
-            <button (click)="editPresentation(i)">Edit</button>
-            <button (click)="removePresentation(i)">Remove</button>
-        </li>
-    </ul>
+    <h3>{{ editIndex !== null ? 'Edit' : 'Add' }} Presentation</h3>
+    <input [(ngModel)]="newPresentation.title" placeholder="Title" />
+    <input [(ngModel)]="newPresentation.date" type="date" />
+    <input [(ngModel)]="newPresentation.duration" type="number" placeholder="Duration (minutes)" />
+    <button (click)="addPresentation()">{{ editIndex !== null ? 'Update' : 'Add' }}</button>
 </div>

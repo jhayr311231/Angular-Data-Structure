@@ -1,41 +1,56 @@
 import { Component } from '@angular/core';
+import { PresentationListService } from '../../services/presentation-list.service';
+
+interface Presentation {
+  title: string;
+  date: string;
+  duration: number;
+}
 
 @Component({
   selector: 'app-presentation-list',
   templateUrl: './presentation-list.component.html',
-  styleUrl: './presentation-list.component.css'
+  styleUrls: ['./presentation-list.component.css']
 })
 export class PresentationListComponent {
+  newPresentation: Presentation = { title: '', date: '', duration: 0 };
+  searchTerm: string = '';
+  editIndex: number | null = null;
 
-  presentations: string[] = []; // Array to hold presentation topics
-  newPresentation: string = ''; // Variable to hold new presentation input
-  searchTerm: string = ''; // Variable to hold search term
+  constructor(private presentationListService: PresentationListService) {}
 
-  // Method to add a new presentation topic
-  addPresentation() {
-    if (this.newPresentation.trim() !== '') {
-      this.presentations.push(this.newPresentation.trim());
-      this.newPresentation = ''; // Clear input field
+  get presentations(): Presentation[] {
+    return this.presentationListService.getPresentations();
+  }
+
+  getFilteredPresentations(): Presentation[] {
+    if (!this.searchTerm) {
+      return this.presentations;
     }
-  }
-
-  // Method to remove a presentation topic by index
-  removePresentation(index: number) {
-    this.presentations.splice(index, 1);
-  }
-
-  // Method to edit a presentation topic
-  editPresentation(index: number) {
-    const updatedTopic = prompt('Edit presentation topic:', this.presentations[index]);
-    if (updatedTopic !== null) {
-      this.presentations[index] = updatedTopic;
-    }
-  }
-
-  // Method to get filtered presentation list based on search term
-  getFilteredPresentations() {
-    return this.presentations.filter(presentation => 
-      presentation.toLowerCase().includes(this.searchTerm.toLowerCase())
+    return this.presentations.filter(presentation =>
+      presentation.title.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
+  }
+
+  addPresentation() {
+    if (this.newPresentation.title.trim() !== '' && this.newPresentation.duration > 0) {
+      if (this.editIndex !== null) {
+        this.presentationListService.editPresentation(this.editIndex, this.newPresentation.title, this.newPresentation.date, this.newPresentation.duration);
+        this.editIndex = null;
+      } else {
+        this.presentationListService.addPresentation(this.newPresentation.title, this.newPresentation.date, this.newPresentation.duration);
+      }
+      this.newPresentation = { title: '', date: '', duration: 0 };
+    }
+  }
+
+  editPresentation(index: number) {
+    const presentation = this.presentations[index];
+    this.newPresentation = { ...presentation };
+    this.editIndex = index;
+  }
+
+  removePresentation(index: number) {
+    this.presentationListService.removePresentation(index);
   }
 }
