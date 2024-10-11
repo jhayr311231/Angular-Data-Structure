@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ComputerHardwareListService} from '../../services/computer-hardware-list.service'; // Import the service
 
 
 // Define the Hardware interface
@@ -39,6 +40,11 @@ export class ComputerHardwareListComponent {
   editedHardwareType: string = '';
   editedHardwareBrand: string = '';
   editedHardwareSpecifications: string = '';
+
+  constructor(private computerHardwareListService: ComputerHardwareListService) {
+    // Fetch the hardware list from the service
+    this.hardwareList = this.computerHardwareListService.getHardwareList();
+  }
 
   // Method to add a new hardware item to the list
   addHardware() {
