@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DestinationListService } from '../../services/destination-list.service' // Import the service
 
 // Define the Destination interface
 interface Destination {
@@ -16,7 +17,7 @@ export class DestinationListComponent {
 // Properties for new destination input values
 newDestinationName: string = '';
 newDestinationCountry: string = '';
-newDestinationDuration: number = 1;
+newDestinationDuration: number = 0;
 
 // List of destinations
 destinationList: Destination[] = [
@@ -35,6 +36,11 @@ editIndex: number | null = null;
 editedDestinationName: string = '';
 editedDestinationCountry: string = '';
 editedDestinationDuration: number = 0;
+
+constructor(private destinationService: DestinationListService) {
+  // Fetch the destination list from the service
+  this.destinationList = this.destinationService.getDestinations();
+}
 
 // Method to add a new destination to the list
 addDestination() {
