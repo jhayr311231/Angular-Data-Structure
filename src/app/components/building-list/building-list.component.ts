@@ -1,4 +1,12 @@
 import { Component } from '@angular/core';
+import { BuildingListService } from '../../services/building-list.service';
+
+// Define an interface for Building
+interface Building {
+  name: string;
+  floors: number;
+  description: string;
+}
 
 @Component({
   selector: 'app-building-list',
@@ -19,6 +27,11 @@ export class BuildingListComponent {
 
   searchTerm = '';
   editingIndex: number | null = null;
+
+  constructor(private buildingListService: BuildingListService) {
+    // Fetch the building list from the service
+    this.buildingList = this.buildingListService.getBuildingList();
+  }
 
   addBuilding() {
     if (this.editingIndex !== null) {
