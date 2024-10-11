@@ -1,4 +1,12 @@
 import { Component } from '@angular/core';
+import { FrameworkListService } from '../../services/framework-list.service';
+
+export interface Framework {
+  name: string;
+  version: string;
+  description: string;
+  category: string; // e.g., front-end, back-end, mobile, etc.
+}
 
 @Component({
   selector: 'app-framework-list',
@@ -12,6 +20,9 @@ export class FrameworkListComponent {
   newFrameworkDescription: string = ''; // Variable to hold new framework description input
   searchTerm: string = ''; // Variable to hold search term
 
+  constructor(private frameworkListService: FrameworkListService) {
+    this.frameworks = this.frameworkListService.getFrameworks(); // Load initial frameworks
+  }
   // Method to add a new framework
   addFramework() {
     if (this.newFrameworkName.trim() !== '' && this.newFrameworkVersion.trim() !== '' && this.newFrameworkDescription.trim() !== '') {
@@ -47,9 +58,9 @@ export class FrameworkListComponent {
 
   // Method to get filtered framework list based on search term
   getFilteredFrameworks() {
-    return this.frameworks.filter(framework => 
-      framework.name.toLowerCase().includes(this.searchTerm.toLowerCase()) || 
-      framework.version.toLowerCase().includes(this.searchTerm.toLowerCase()) || 
+    return this.frameworks.filter(framework =>
+      framework.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      framework.version.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
       framework.description.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
