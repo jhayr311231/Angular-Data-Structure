@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MobileAppListService } from '../../services/mobile-app-list.service';
 
 // Define the App interface
 interface App {
@@ -19,26 +20,31 @@ export class MobileAppListComponent {
    newAppCategory: string = '';
    newAppRating: number = 0;
    newAppDescription: string = '';
- 
+
    // List of mobile apps
    appList: App[] = [
      { name: 'WhatsApp', category: 'Social Media', rating: 4.8, description: 'Messaging app' },
      { name: 'Angry Birds', category: 'Game', rating: 4.5, description: 'Fun game with birds' },
      { name: 'Evernote', category: 'Productivity', rating: 4.7, description: 'Note-taking app' },
    ];
- 
+
    // Property for search input
    searchQuery: string = '';
- 
+
    // Property to hold the index of the app item being edited
    editIndex: number | null = null;
- 
+
    // Temporary properties to store the edited app values
    editedAppName: string = '';
    editedAppCategory: string = '';
    editedAppRating: number = 0;
    editedAppDescription: string = '';
- 
+
+   constructor(private mobileAppListService: MobileAppListService) {
+    // Fetch the mobile app list from the service
+    this.appList = this.mobileAppListService.getMobileAppList(); // Ensure this line is correct
+  }
+
    // Method to add a new app to the list
    addApp() {
      if (this.newAppName.trim() && this.newAppCategory.trim() &&
@@ -56,7 +62,7 @@ export class MobileAppListComponent {
        this.newAppDescription = '';
      }
    }
- 
+
    // Method to get the filtered list of apps based on the search query
    getFilteredApps(): App[] {
      if (this.searchQuery.trim()) {
@@ -66,7 +72,7 @@ export class MobileAppListComponent {
      }
      return this.appList;
    }
- 
+
    // Method to edit an app item
    editApp(index: number) {
      this.editIndex = index;
@@ -75,7 +81,7 @@ export class MobileAppListComponent {
      this.editedAppRating = this.appList[index].rating;
      this.editedAppDescription = this.appList[index].description;
    }
- 
+
    // Method to save the edited app
    saveEdit() {
      if (this.editIndex !== null) {
@@ -93,7 +99,7 @@ export class MobileAppListComponent {
        this.editedAppDescription = '';
      }
    }
- 
+
    // Method to remove an app from the list
    removeApp(index: number) {
      this.appList.splice(index, 1);
