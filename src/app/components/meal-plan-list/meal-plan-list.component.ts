@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MealPlanListService } from '../../services/meal-plan-list.service';
+
 
 @Component({
   selector: 'app-meal-plan-list',
@@ -11,6 +13,9 @@ export class MealPlanListComponent {
   meals: string[] = ['Breakfast - Oatmeal', 'Lunch - Grilled Chicken', 'Dinner - Salmon and Veggies'];
   editIndex: number | null = null;
 
+  constructor(private mealPlanListService: MealPlanListService) {}
+
+
   getFilteredMeals(): string[] {
     if (!this.searchMeal) {
       return this.meals;
@@ -19,6 +24,7 @@ export class MealPlanListComponent {
       meal.toLowerCase().includes(this.searchMeal.toLowerCase())
     );
   }
+
 
   addMeal() {
     if (this.newMeal.trim() !== '') {
