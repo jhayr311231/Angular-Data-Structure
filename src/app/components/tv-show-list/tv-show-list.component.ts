@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TvShowListService } from '../../services/tv-show-list.service';
 
 export interface TVShow {
   title: string;
@@ -15,6 +16,11 @@ export class TvShowListComponent {
   tvShows: TVShow[] = [];
   newShow: TVShow = { title: '', genre: '', imageUrl: '' };
   searchTerm: string = '';
+
+  constructor(private tvShowListService: TvShowListService) {
+    // Initialize the tvShows list from the service
+    this.tvShows = this.tvShowListService.getTvShowList();
+  }
 
   addShow() {
     if (this.newShow.title && this.newShow.genre) {
@@ -33,7 +39,7 @@ export class TvShowListComponent {
   }
 
   getFilteredShows(): TVShow[] {
-    return this.tvShows.filter(show => 
+    return this.tvShows.filter(show =>
       show.title.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
