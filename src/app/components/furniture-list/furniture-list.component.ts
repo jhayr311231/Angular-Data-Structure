@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FurnitureListService } from '../../services/furniture-list.service';
 
 export interface Furniture {
   name: string;
@@ -16,6 +17,10 @@ export class FurnitureListComponent {
   furnitureItems: Furniture[] = [];
   newItem: Furniture = { name: '', category: '', price: 0, imageUrl: '' };
   searchTerm: string = '';
+
+  constructor(private furnitureListService: FurnitureListService) {
+    this.furnitureItems = this.furnitureListService.getFurnitureList();
+  }
 
   addFurniture() {
     if (this.newItem.name && this.newItem.category && this.newItem.price) {
