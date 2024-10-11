@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AccessoryListService } from '../../services/accessory-list.service';
 
 export interface Accessory {
   name: string;
@@ -16,6 +17,11 @@ export class AccessoryListComponent {
   accessoryItems: Accessory[] = [];
   newItem: Accessory = { name: '', type: '', price: 0, imageUrl: '' };
   searchTerm: string = '';
+
+  constructor(private accessoryListService: AccessoryListService) {
+    // Fetch the accessory list from the service
+    this.accessoryItems = this.accessoryListService.getAccessoryList(); // Use accessoryItems
+  }
 
   addAccessory() {
     if (this.newItem.name && this.newItem.type && this.newItem.price > 0) { // Check if price is greater than 0
